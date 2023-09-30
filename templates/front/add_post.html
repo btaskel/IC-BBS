@@ -1,0 +1,186 @@
+<!doctype html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* @version 1.0.0-beta19
+* @link https://tabler.io
+* Copyright 2018-2023 The Tabler Authors
+* Copyright 2018-2023 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>TinyMCE - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <script defer data-api="/stats/api/event" data-domain="preview.tabler.io" src="/stats/js/script.js"></script>
+    <meta name="msapplication-TileColor" content=""/>
+    <meta name="theme-color" content=""/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="MobileOptimized" content="320"/>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
+    <meta name="description"
+          content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!"/>
+    <meta name="canonical" content="https://preview.tabler.io/tinymce.html">
+    <meta name="twitter:image:src" content="https://preview.tabler.io/static/og.png">
+    <meta name="twitter:site" content="@tabler_ui">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title"
+          content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
+    <meta name="twitter:description"
+          content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
+    <meta property="og:image" content="https://preview.tabler.io/static/og.png">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="640">
+    <meta property="og:site_name" content="Tabler">
+    <meta property="og:type" content="object">
+    <meta property="og:title"
+          content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
+    <meta property="og:url" content="https://preview.tabler.io/static/og.png">
+    <meta property="og:description"
+          content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
+    <!-- CSS files -->
+    <link href="{{ url_for('static', filename='cms/dist/css/tabler.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='cms/dist/css/tabler-flags.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='cms/dist/css/tabler-payments.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='cms/dist/css/tabler-vendors.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='cms/dist/css/demo.css') }}" rel="stylesheet"/>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        :root {
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
+
+        body {
+            font-feature-settings: "cv03", "cv04", "cv11";
+        }
+    </style>
+</head>
+<body>
+<script src="{{ url_for("static", filename="js/demo-theme.min.js") }}"></script>
+<div class="page-wrapper">
+    <!-- Page header -->
+    <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <h2 class="page-title">
+                        TinyMCE
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page body -->
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="mb-3">
+
+
+                        <form method="post" action="/add_post">
+                            <div class="mb-3">
+                                <label class="form-label">标题</label>
+                                <input type="text" class="form-control" name="title" placeholder="起个名字吧~">
+                            </div>
+                            <label class="form-label">内容</label>
+                            <textarea id="tinymce-mytextarea" name="content" placeholder="记录你美好的一天~ (拖拽可以上传图片和动图)"></textarea>
+                            <div class="form-field" style="text-align: center;">
+                                <input type="submit" class="btn btn-primary btn-block" value="发布">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer footer-transparent d-print-none">
+        <div class="container-xl">
+            <div class="row text-center align-items-center flex-row-reverse">
+                <div class="col-lg-auto ms-lg-auto">
+                    <ul class="list-inline list-inline-dots mb-0">
+                        <li class="list-inline-item"><a href="https://tabler.io/docs" target="_blank"
+                                                        class="link-secondary" rel="noopener">Documentation</a></li>
+                        <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a>
+                        </li>
+                        <li class="list-inline-item"><a href="https://github.com/tabler/tabler" target="_blank"
+                                                        class="link-secondary" rel="noopener">Source code</a></li>
+                        <li class="list-inline-item">
+                            <a href="https://github.com/sponsors/codecalm" target="_blank" class="link-secondary"
+                               rel="noopener">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="icon text-pink icon-filled icon-inline" width="24" height="24"
+                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"/>
+                                </svg>
+                                Sponsor
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                    <ul class="list-inline list-inline-dots mb-0">
+                        <li class="list-inline-item">
+                            Copyright &copy; 2023
+                            <a href="." class="link-secondary">Tabler</a>.
+                            All rights reserved.
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="./changelog.html" class="link-secondary" rel="noopener">
+                                v1.0.0-beta19
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+<!-- Libs JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.2/tinymce.min.js"></script>
+{#<script src="{{ url_for("static", filename="js/tinymce.min.js") }}" defer></script>#}
+<!-- Tabler Core -->
+<script src="{{ url_for("static", filename="js/tabler.min.js") }}" defer></script>
+<script src="{{ url_for("static",filename="js/demo.min.js") }}" defer></script>
+<script>
+    // @formatter:off
+    document.addEventListener("DOMContentLoaded", function () {
+        let options = {
+            selector: '#tinymce-mytextarea',
+            height: 300,
+            menubar: false,
+            statusbar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount',
+                'image'
+            ],
+            toolbar: 'image|undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat',
+            content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }',
+            images_upload_url: '/my_upload_handler'
+        }
+        if (localStorage.getItem("tablerTheme") === 'dark') {
+            options.skin = 'oxide-dark';
+            options.content_css = 'dark';
+        }
+        tinyMCE.init(options);
+    })
+    // @formatter:on
+</script>
+</body>
+</html>

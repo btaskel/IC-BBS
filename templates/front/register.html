@@ -1,0 +1,147 @@
+{% extends "front/base.html" %}
+
+{% block head %}
+    <script src="{{ url_for('static', filename='js/zlajax.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+{% endblock %}
+
+{% block title %}
+    注册界面
+{% endblock %}
+
+{% block body %}
+    <div class="untree_co-login-register">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-5">
+                    <div class="custom-box" data-aos="fade-up" data-aos-delay="0">
+                        <h2 class="heading">Register</h2>
+                        <form action="{{ url_for('user.register') }}" method="post">
+
+                            <div class="form-field">
+                                <label for="name">昵称</label>
+                                <input type="text" class="form-control" id="name" name="username">
+                            </div>
+                            <div class="form-field">
+                                <label for="email">邮箱</label>
+                                <input type="text" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">邮箱验证码</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="captcha" placeholder="验证码">
+                                    <div class="input-group-append">
+                                        <button id="captcha-btn" class="btn btn-outline-secondary">发送验证码</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="password">密码</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="form-field">
+                                <label for="repassword">再次输入密码</label>
+                                <input type="password" class="form-control" id="repassword" name="repassword">
+                            </div>
+                            <div class="form-field">
+                                <input type="submit" class="btn btn-primary btn-block" value="Register">
+                            </div>
+                        </form>
+                        {% with messages = get_flashed_messages() %}
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="site-footer">
+
+        <div class="footer-dots"></div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="widget">
+                        <h3>About Launch<span class="text-primary">.</span></h3>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                            there
+                            live the blind texts.</p>
+                    </div>
+                    <div class="widget">
+                        <h3>Follow Us</h3>
+                        <ul class="list-unstyled social">
+                            <li><a href="#"><span class="icon-instagram"></span></a></li>
+                            <li><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                            <li><a href="#"><span class="icon-pinterest"></span></a></li>
+                            <li><a href="#"><span class="icon-dribbble"></span></a></li>
+                        </ul>
+                    </div> <!-- /.widget -->
+                </div> <!-- /.col-lg-3 -->
+
+                <div class="col-lg-2 ml-auto">
+                    <div class="widget">
+                        <h3>Projects</h3>
+                        <ul class="list-unstyled float-left links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Pricing</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div> <!-- /.widget -->
+                </div> <!-- /.col-lg-3 -->
+
+                <div class="col-lg-2">
+                    <div class="widget">
+                        <h3>Services</h3>
+                        <ul class="list-unstyled float-left links">
+                            <li><a href="#">Built for Developers</a></li>
+                            <li><a href="#">Modern Design</a></li>
+                            <li><a href="#">Building Stunning Websites</a></li>
+                            <li><a href="#">Bring Ideas To Life</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="widget">
+                        <h3>Quick Contact</h3>
+                        <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+                        <ul class="list-unstyled links mb-4">
+                            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+                            <li><a href="mailto:info@mydomain.com">info@mydomain.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <p class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        . All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block js %}
+
+{% endblock %}
