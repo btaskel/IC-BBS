@@ -1,7 +1,5 @@
-# from wtforms import Form, StringField, ValidationError
-# from wtforms.validators import Email, EqualTo, Length
-
-from wtforms import StringField, ValidationError, BooleanField
+from flask_wtf.file import FileAllowed
+from wtforms import StringField, ValidationError, BooleanField, FileField
 # EqualTo验证两个字符串是否相同
 from wtforms.validators import Email, Length, EqualTo
 
@@ -35,3 +33,10 @@ class RegisterForm(BaseForm):
         cache_captcha = cache.get(email)
         if not cache_captcha or captcha != cache_captcha:
             raise ValidationError(message='验证码错误')
+
+
+class EditProfileForm(BaseForm):
+    username = StringField(validators=[Length(min=2, max=20, message='用户名应在2-20个字符之间')])
+    portrait = FileField(validators=[FileAllowed(['jpg', 'png', 'jpeg'], message='上传的图片类型错误, 只能为jpg, png或jpeg.')])
+    signature = StringField(validators=[Length(min=2, max=1000, message='签名应该在2-1000个字符之间')])
+

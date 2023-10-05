@@ -58,6 +58,7 @@ class UserModel(db.Model):
     is_active = db.Column(db.Boolean, default=True)
     is_staff = db.Column(db.Boolean, default=False)
     report = db.Column(db.Boolean, default=True)
+    gravatar = db.Column(db.String(255), default='media/upload/user/default/portrait.jpg', nullable=False)
 
     # # 关注者
     followed = db.relationship(

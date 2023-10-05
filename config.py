@@ -11,6 +11,8 @@ class BaseConfig:
 
 class ProductionConfig(BaseConfig):
     """生产服务器配置"""
+    # 媒体文件存放路径
+    UPLOAD_FOLDER = r'./media'
 
     # 缓存配置
     CACHE_TYPE = 'RedisCache'

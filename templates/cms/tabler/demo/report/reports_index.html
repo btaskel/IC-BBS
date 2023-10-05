@@ -2,12 +2,14 @@
 <!doctype html>
 {% block head %}
 	 <meta name="canonical" content="https://preview.tabler.io/blank.html">
+	 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 	 <script>
 		  $(function () {
 				$('a.link-muted.delete').each(function () {
 					 $(this).click(function (event) {
 						  event.preventDefault()
-						  let report_id = $(this).attr("id")// 这里是你想要删除的帖子的id
+						  let report_id = $(this).attr("id")
 						  let box = $(this)
 						  $.ajax({
 								url: 'ban_report/' + report_id,
@@ -17,7 +19,7 @@
 								},
 								error: function (error) {
 									 console.log(error);
-									 alert("封禁用户失败！")
+									 alert("关闭举报失败！")
 								}
 						  });
 					 });
@@ -252,9 +254,10 @@
 										  </a>
 									 </li>
 									 <li class="nav-item active dropdown">
-										  <button class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-													 id="posts_list"
-													 data-bs-auto-close="outside" role="button" aria-expanded="false">
+												<a class="nav-link dropdown-toggle" href="{{ url_for("cms.reports_index")}}"
+														  data-bs-toggle="dropdown"
+														  id="posts_list"
+														  data-bs-auto-close="outside" role="button" aria-expanded="false">
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
 									stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -262,10 +265,10 @@
 										d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"/><path d="M12 12l8 -4.5"/><path
 										d="M12 12l0 9"/><path d="M12 12l-8 -4.5"/><path d="M16 5.25l-8 4.5"/></svg>
                     </span>
-												<span class="nav-link-title">
+													 <span class="nav-link-title">
                       举报列表
                     </span>
-										  </button>
+										  </a>
 										  <div class="dropdown-menu">
 												<div class="dropdown-menu-columns">
 													 <div class="dropdown-menu-column">
@@ -463,7 +466,7 @@
 										  </div>
 									 </li>
 									 <li class="nav-item">
-										  <a class="nav-link" href="{{ url_for("cms.ban_posts") }}">
+										  <a class="nav-link" href="{{ url_for("cms.reported_resolved") }}">
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
 									stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -477,7 +480,7 @@
 										  </a>
 									 </li>
 									 <li class="nav-item dropdown">
-										  <a class="nav-link dropdown-toggle" href="{{ url_for("cms.timeout_work_order") }}"
+										  <a class="nav-link dropdown-toggle" href="{{ url_for("cms.report_bat") }}"
 											  data-bs-toggle="dropdown"
 											  data-bs-auto-close="outside" role="button" aria-expanded="false">
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
@@ -672,8 +675,8 @@
 																</a>
 														  </div>
 														  <div class="col-auto">
-																<a href="{{ url_for("cms.ban_report", report_id=report.id) }}"
-																	class="link-muted">
+																<a id="{{ report.id }}" href="#"
+																	class="link-muted delete">
 																	 <!-- Download SVG icon from http://tabler-icons.io/i/share -->
 																	 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
 																			height="24" viewBox="0 0 24 24" stroke-width="2"

@@ -2,10 +2,11 @@ import random
 
 from flask import Blueprint, request, render_template, url_for, redirect, flash, current_app, session, g
 from flask_mail import Message
+from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.security import check_password_hash
 
 from exts import db, mail, cache
-from forms.users import RegisterForm, LoginForm
+from forms.users import RegisterForm, LoginForm, EditProfileForm
 from models.users import UserModel
 from utils import restful
 
@@ -125,7 +126,12 @@ def profile(user_id):
             is_mine = True
         return render_template('front/profile.html', user=user, is_mine=is_mine)
     else:
-        pass
+        form = EditProfileForm(CombinedMultiDict([request.form, request.files]))
+        if form.validate():
+            print(form.username.data)
+            print(form.portrait.data)
+            print(form.signature.data)
+        return redirect(url_for('front.index'))
 
 
 @bp.route('/logout')
@@ -134,3 +140,12 @@ def logout():
     if g.user:
         session.clear()
     return redirect('/')
+
+@bp.post('/upload')
+def upload():
+    if 'image' not in request.files:
+        flash('上传图片格式错误')
+        return redirect(url_for(''))
+    image = request.files['image']
+    if image.filename == '':
+        return redirect(url_for(''))

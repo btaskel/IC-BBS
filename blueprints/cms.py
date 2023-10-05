@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, flash
-from utils import restful
+
 from exts import db
 from forms.cms import WorkForm
 from hooks import permission_required
@@ -9,6 +9,7 @@ from models.event import WorkModel, ReportModel
 from models.event import WorkTypeEnum
 from models.posts import PostModel
 from models.users import PermissionEnum, UserModel, RoleModel
+from utils import restful
 from utils.func.cms import recent_count, week_count
 
 bp = Blueprint('cms', __name__, url_prefix='/cms')
@@ -216,7 +217,7 @@ def reports_index():
     return render_template("cms/tabler/demo/report/reports_index.html", user=g.user, reports=reports)
 
 
-@bp.post('/ban_reports/<int:report_id>')
+@bp.post('/ban_report/<int:report_id>')
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_report(report_id):
     """举报列表：将举报对象关闭活动"""
@@ -224,17 +225,42 @@ def ban_report(report_id):
     if report:
         report.active = False
         db.session.commit()
-    return flash(f'举报id：{report_id}已标记为停止活动')
+        flash(f'举报id：{report_id}已标记为停止活动')
+    return redirect(url_for('cms.reports_index'))
 
 
-@bp.post('restore_report/<int:report_id>')
-def restore_report(report_id):
-    """完成的举报：恢复举报"""
-    report = ReportModel.query.get(report_id)
-    if report:
-        report.active = True
-        db.session.commit()
-    return flash(f'举报id：{report_id}已标记为活动')
+@bp.route('/reported_resolved', methods=['GET', 'POST'])
+@permission_required(PermissionEnum.FRONT_USER)
+def reported_resolved():
+    """
+    已解决的举报：获取被封禁的举报列表
+    :return:
+    """
+    if request.method == 'GET':
+        reports = ReportModel.query.all()
+        return render_template("cms/tabler/demo/report/reported_resolved.html", user=g.user, reports=reports)
+    else:
+        # 已解决的举报：恢复举报
+        report_id = request.form.get('report_id')
+        if report_id:
+            report = ReportModel.query.get(report_id)
+            if report:
+                report.active = True
+                db.session.commit()
+                flash(f'举报id：{report_id}已标记为活动')
+        return redirect(url_for('cms.reported_resolved'))
+
+
+@bp.route('/report_bat', methods=['GET', 'POST'])
+@permission_required(PermissionEnum.FRONT_USER)
+def report_bat():
+    """举报批量处理：批量处理界面"""
+    if request.method == 'GET':
+        reports = ReportModel.query.all()
+        return render_template("cms/tabler/demo/report/report_bat.html", user=g.user, reports=reports)
+    else:
+        # todo: 批量处理举报
+        return redirect(url_for('cms.report_bat'))
 
 
 @bp.get('/user_index')
@@ -255,25 +281,25 @@ def ban_user(user_id):
     return redirect(url_for('cms.users_index'))
 
 
-@bp.get('restore_user')
+@bp.get('/restore_user')
 @permission_required(PermissionEnum.FRONT_USER)
 def restore_user_index():
     """封禁的用户：获取被封禁的用户"""
-    reports = ReportModel.query.all()
-    return render_template("cms/tabler/demo/report/reports_index.html", reports=reports, user=g.user)
+    users = UserModel.query.all()
+    return render_template("cms/tabler/demo/user/ban_users.html", users=users, user=g.user)
 
 
-@bp.post('restore_user/<string:user_id>')
+@bp.post('/restore_user/<string:user_id>')
 def restore_user(user_id):
-    """封禁的用户：恢复举报"""
-    report = ReportModel.query.get(user_id)
-    if report:
-        report.active = True
+    """封禁的举报：恢复举报"""
+    user = UserModel.query.get(user_id)
+    if user:
+        user.active = True
         db.session.commit()
     return flash(f'用户id：{user_id}已标记为活动')
 
 
-@bp.get('custom_permissions')
+@bp.get('/custom_permissions')
 def custom_permissions():
     """自定义用户权限"""
     user = g.user
@@ -281,7 +307,7 @@ def custom_permissions():
     return render_template("cms/tabler/demo/user/custom_permissions.html", user=user, roles=roles)
 
 
-@bp.post('custom_user_permission/')
+@bp.post('/custom_user_permission')
 def custom_user_permission():
     """自定义用户权限"""
     user_id = request.args.get('user_id')
@@ -296,3 +322,10 @@ def custom_user_permission():
     else:
         flash("错误：用户不存在或职位角色不存在！")
         return restful.params_error()
+
+@bp.route('/board_manage', methods=['GET', 'POST'])
+def board_manage():
+    if request.method == 'GET':
+        return render_template('cms/tabler/demo/board/boards_index.html', user=g.user)
+    else:
+        return redirect(url_for('cms.board_manage'))
