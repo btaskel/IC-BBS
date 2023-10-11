@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 from flask import Blueprint, request, render_template, url_for, redirect, flash, current_app, session, g
 from flask_mail import Message
@@ -84,6 +85,9 @@ def login():
                 # 记住登录状态
                 if remember:
                     session.permanent = True
+                user.last_active_time = datetime.now()
+                db.session.add(user)
+                db.session.commit()
                 return redirect(url_for('post.post_list'))
 
             else:

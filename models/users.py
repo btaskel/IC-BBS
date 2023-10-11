@@ -46,19 +46,49 @@ followers = db.Table(
 )
 
 
+class GenderEnum(Enum):
+    male = '男'
+    female = '女'
+    Female_cross_male = '女跨男'
+    male_to_female = '男跨女'
+    LGBT = 'LGBT'
+    other = '其他性别'
+    none = '未填写'
+
+
 class UserModel(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.String(100), primary_key=True, default=uuid)
     username = db.Column(db.String(20), nullable=False)
     _password = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(50), nullable=False, unique=True)
-    create_time = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    signature = db.Column(db.Text(1000), nullable=True, default='什么都没有写唷~ (￣▽￣)')
+    email_active = db.Column(db.Boolean, nullable=False, default=False)
 
-    is_active = db.Column(db.Boolean, default=True)
-    is_staff = db.Column(db.Boolean, default=False)
+    create_time = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    create_time_active = db.Column(db.Boolean, nullable=False, default=True)
+
+    signature = db.Column(db.Text(1000), default='什么都没有写唷~ (￣▽￣)')
+    signature_active = db.Column(db.Boolean, nullable=False, default=True)
+
+    gender = db.Column(db.Enum(GenderEnum), default=GenderEnum.none)
+    gender_active = db.Column(db.Boolean, nullable=False, default=True)
+
+    phone = db.Column(db.Integer, default='--未填写--')
+    phone_active = db.Column(db.Boolean, nullable=False, default=True)
+
+    location = db.Column(db.String(200), default='火星~')
+    location_active = db.Column(db.Boolean, default=True)
+
+    birthday = db.Column(db.String(7), default='--未填写--')
+    birthday_active = db.Column(db.Boolean, nullable=False, default=True)
+
+    home = db.Column(db.String(255), default='--未填写--')
+    home_active = db.Column(db.Boolean, nullable=False, default=True)
+
+    is_active = db.Column(db.Boolean, nullable=False, default=True)
+    is_staff = db.Column(db.Boolean, nullable=False, default=False)
     report = db.Column(db.Boolean, default=True)
-    gravatar = db.Column(db.String(255), default='media/upload/user/default/portrait.jpg', nullable=False)
+    portrait = db.Column(db.String(255), default='media/upload/user/default/portrait.jpg', nullable=False)
 
     # # 关注者
     followed = db.relationship(

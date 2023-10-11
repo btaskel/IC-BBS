@@ -3,11 +3,11 @@ from datetime import datetime, timedelta
 from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, flash
 
 from exts import db
-from forms.cms import WorkForm
+from forms.cms import WorkForm, BoardEditForm
 from hooks import permission_required
 from models.event import WorkModel, ReportModel
 from models.event import WorkTypeEnum
-from models.posts import PostModel
+from models.posts import PostModel, BoardModel
 from models.users import PermissionEnum, UserModel, RoleModel
 from utils import restful
 from utils.func.cms import recent_count, week_count
@@ -300,6 +300,7 @@ def restore_user(user_id):
 
 
 @bp.get('/custom_permissions')
+@permission_required(PermissionEnum.CMS_USER)
 def custom_permissions():
     """自定义用户权限"""
     user = g.user
@@ -308,6 +309,7 @@ def custom_permissions():
 
 
 @bp.post('/custom_user_permission')
+@permission_required(PermissionEnum.CMS_USER)
 def custom_user_permission():
     """自定义用户权限"""
     user_id = request.args.get('user_id')
@@ -324,8 +326,44 @@ def custom_user_permission():
         return restful.params_error()
 
 @bp.route('/board_manage', methods=['GET', 'POST'])
+@permission_required(PermissionEnum.CMS_USER)
 def board_manage():
+    """
+    GET：获取板块静态管理界面
+    POST：提交修改板块内容
+    :return:
+    """
     if request.method == 'GET':
-        return render_template('cms/tabler/demo/board/boards_index.html', user=g.user)
+        boards = BoardModel.query.all()
+        return render_template('cms/tabler/demo/board/boards_index.html', user=g.user, boards=boards)
     else:
+        method = request.form.get('btn')
+        form = BoardEditForm(request.form)
+        if form.validate():
+            board_id = form.board_id.data
+            board_name = form.board_name.data
+
+            if method == 'edit':
+                board = BoardModel.query.get(board_id)
+                if board:
+                    board.name = board_name
+                    db.session.add(board)
+                    db.session.commit()
+                    flash(f'修改板块名称为：{board_name} 成功')
+                else:
+                    board = BoardModel(name=board_name)
+                    db.session.add(board)
+                    db.session.commit()
+                    flash(f'添加板块{board.name}成功')
+
+            elif method == 'delete':
+                board = BoardModel.query.get(board_id)
+                db.session.delete(board)
+                db.session.commit()
+                flash(f'删除板块{board_name}成功')
         return redirect(url_for('cms.board_manage'))
+
+@bp.route('/system_log')
+@permission_required(PermissionEnum.CMS_USER)
+def system_log():
+    return render_template('')

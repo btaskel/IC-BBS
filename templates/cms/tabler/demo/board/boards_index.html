@@ -2,7 +2,6 @@
 <!doctype html>
 {% block head %}
 	 <meta name="canonical" content="https://preview.tabler.io/blank.html">
-	 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -202,26 +201,28 @@
 								<div class="mb-3">
 									 <label class="form-label">选择/添加板块</label>
 									 <select class="form-select">
-										  <option value="AD">Andorra</option>
-										  <option value="AE">United Arab Emirates</option>
+										  {% for board in boards %}
+												<option name="board_id" value="{{ board.id }}">{{ board.name }}</option>
+										  {% endfor %}
+										  <option value="0">--创建新板块--</option>
 									 </select>
 								</div>
 								<div class="mb-4">
-									 <label class="form-label">Your Phone Number</label>
+									 <label class="form-label">板块名</label>
 									 <div class="input-group">
-										  <span class="input-group-text">+1</span>
-										  <input type="text" class="form-control" placeholder="Enter phone number"/>
+										  <input type="text" class="form-control" placeholder="更改或增加新板块" name="board_name"/>
 									 </div>
 								</div>
 								<div class="text-secondary">
-									 Security is critical in Tabler. to help keep your account safe, we'll
-									 text you a verification code when you sign in on a new device
+									 1.当选择一个已有板块更改名称并点击 “修改/添加” 按钮时，将会修改其名称。
+									 <br>
+									 2.当选择 “创建新板块” 并点击 “修改/添加” 按钮时，将会添加新板块。
 								</div>
 								<div class="form-footer">
-									 <button type="submit" class="btn btn-primary w-100" style="color: #b90000">
+									 <button type="submit" name="btn" class="btn btn-primary w-100" style="color: #b90000" value="delete">
 										  删除
 									 </button>
-									 <button type="submit" class="btn btn-primary w-100" style="margin: 20px 0px">
+									 <button type="submit" name="btn" class="btn btn-primary w-100" style="margin: 20px 0px" value="edit">
 										  修改/添加
 									 </button>
 								</div>
