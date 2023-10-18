@@ -88,9 +88,9 @@ class UserModel(db.Model):
     is_active = db.Column(db.Boolean, nullable=False, default=True)
     is_staff = db.Column(db.Boolean, nullable=False, default=False)
     report = db.Column(db.Boolean, default=True)
-    portrait = db.Column(db.String(255), default='media/upload/user/default/portrait.jpg', nullable=False)
+    portrait = db.Column(db.String(255), default='default', nullable=False)
 
-    # # 关注者
+    # 关注者
     followed = db.relationship(
         'UserModel', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),
@@ -106,6 +106,18 @@ class UserModel(db.Model):
             if perm.name == permission:
                 return True
         return False
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    def is_following(self, user):
+        return self.followed.filter(
+            followers.c.followed_id == user.id).count() > 0
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
 
 # following_id', db.String(100), db.ForeignKey('user.id')),
 #     db.Column('followers_id

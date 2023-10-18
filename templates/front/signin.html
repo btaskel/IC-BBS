@@ -17,6 +17,7 @@
                     <div class="custom-box" data-aos="fade-up" data-aos-delay="0">
                         <h2 class="heading">Welcome</h2>
                         <form action="{{ url_for('user.login') }}" method="post">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                             <div class="form-field">
                                 <label for="email">邮箱</label>
                                 <input type="email" class="form-control" id="email" name="email">

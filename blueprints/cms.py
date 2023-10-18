@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, flash
 
-from exts import db
+from exts import db, csrf
 from forms.cms import WorkForm, BoardEditForm
 from hooks import permission_required
 from models.event import WorkModel, ReportModel
@@ -50,10 +50,11 @@ def cms_index():
         'post_list': post_list
     }
 
-    return render_template('cms/tabler/demo/home.html', var=var)
+    return render_template('cms/tabler/demo/home/home.html', var=var)
 
 
 @bp.route('/work_order', methods=['GET', 'POST'])
+@csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def work_order():
     """
@@ -65,15 +66,10 @@ def work_order():
 
     elif request.method == 'POST':
         form = WorkForm(request.form)
-        print(request.form.get('title'))
-        print(request.form.get('content'))
-        print(request.form.get('level'))
         if form.validate():
             title = form.title.data
             content = form.content.data
             level = form.level.data
-            print(title, content, level)
-            print('Compute')
             report = WorkModel(title=title, content=content, level=level, user=g.user)
             db.session.add(report)
             db.session.commit()
@@ -151,6 +147,7 @@ def train():
 
 
 @bp.route('/search_user', methods=['GET', 'POST'])
+@csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def search_user():
     if request.method == 'GET':
@@ -179,6 +176,7 @@ def post_index():
 
 
 @bp.post("/post_index/<int:post_id>")
+@csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_post(post_id):
     post = PostModel.query.get(post_id)
@@ -198,6 +196,7 @@ def ban_posts():
 
 
 @bp.post('/ban_posts/<int:post_id>')
+@csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def restore_post(post_id):
     """解封帖子"""
@@ -230,6 +229,7 @@ def ban_report(report_id):
 
 
 @bp.route('/reported_resolved', methods=['GET', 'POST'])
+@csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def reported_resolved():
     """
@@ -252,6 +252,7 @@ def reported_resolved():
 
 
 @bp.route('/report_bat', methods=['GET', 'POST'])
+@csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def report_bat():
     """举报批量处理：批量处理界面"""
@@ -272,6 +273,7 @@ def users_index():
 
 
 @bp.post('/ban_user/<string:user_id>')
+@csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_user(user_id):
     """用户列表：封禁用户"""
@@ -282,7 +284,7 @@ def ban_user(user_id):
 
 
 @bp.get('/restore_user')
-@permission_required(PermissionEnum.FRONT_USER)
+@permission_required(PermissionEnum.CMS_USER)
 def restore_user_index():
     """封禁的用户：获取被封禁的用户"""
     users = UserModel.query.all()
@@ -290,6 +292,7 @@ def restore_user_index():
 
 
 @bp.post('/restore_user/<string:user_id>')
+@csrf.exempt
 def restore_user(user_id):
     """封禁的举报：恢复举报"""
     user = UserModel.query.get(user_id)
@@ -326,6 +329,7 @@ def custom_user_permission():
         return restful.params_error()
 
 @bp.route('/board_manage', methods=['GET', 'POST'])
+@csrf.exempt
 @permission_required(PermissionEnum.CMS_USER)
 def board_manage():
     """
@@ -362,8 +366,3 @@ def board_manage():
                 db.session.commit()
                 flash(f'删除板块{board_name}成功')
         return redirect(url_for('cms.board_manage'))
-
-@bp.route('/system_log')
-@permission_required(PermissionEnum.CMS_USER)
-def system_log():
-    return render_template('')

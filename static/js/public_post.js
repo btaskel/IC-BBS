@@ -42,7 +42,7 @@ $(function () {
         var content = editor.txt.html();
 
         zlajax.post({
-            url: "/post/public",
+            url: "/post/add_post",
             data: {title, board_id, content}
         }).done(function (data) {
             setTimeout(function () {

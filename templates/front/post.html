@@ -9,6 +9,13 @@
 
 {% block body %}
     {#板块选择#}
+    {% for messages in get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                alert('{{ messages }}')
+            </script>
+        {% endif %}
+    {% endfor %}
     <div style="width: 75%; text-align: center; margin: 0 auto;">
         <div class="untree_co-hero py-5 mb-0" id="home-section">
             <div class="container">
@@ -61,8 +68,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="site-footer">
 
         <div class="footer-dots"></div> <!-- /.footer-dots -->
@@ -144,7 +149,7 @@
     <div id="overlayer"></div>
     <div class="loader">
         <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+            <span class="sr-only">正在加载中~ o(*￣▽￣*)ブ...</span>
         </div>
     </div>
 {% endblock %}

@@ -38,3 +38,5 @@ def addre():
     db.session.add(report)
     db.session.commit()
     return 'ok'
+
+

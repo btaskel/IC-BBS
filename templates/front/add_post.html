@@ -44,11 +44,14 @@
     <meta property="og:description"
           content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
     <!-- CSS files -->
+    {#    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>#}
+    {#    <script src="{{ url_for('static', filename='js/public_post.js') }}"></script>#}
     <link href="{{ url_for('static', filename='cms/dist/css/tabler.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='cms/dist/css/tabler-flags.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='cms/dist/css/tabler-payments.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='cms/dist/css/tabler-vendors.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='cms/dist/css/demo.css') }}" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -85,15 +88,26 @@
                     <div class="mb-3">
 
 
-                        <form method="post" action="/add_post">
+                        <form method="post" action="{{ url_for('post.add_post') }}" id="form1">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <input type="hidden" name="images" id="images">
                             <div class="mb-3">
                                 <label class="form-label">标题</label>
-                                <input type="text" class="form-control" name="title" placeholder="起个名字吧~">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="起个名字吧~">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">选择板块</label>
+                                <select class="form-select" name="board_id">
+                                    {% for board in boards %}
+                                        <option value="{{ board.id }}">{{ board.name }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                             <label class="form-label">内容</label>
-                            <textarea id="tinymce-mytextarea" name="content" placeholder="记录你美好的一天~ (拖拽可以上传图片和动图)"></textarea>
+                            <textarea id="tinymce-mytextarea" name="content"
+                                      placeholder="记录你美好的一天~ (拖拽可以上传图片和动图)"></textarea>
                             <div class="form-field" style="text-align: center;">
-                                <input type="submit" class="btn btn-primary btn-block" value="发布">
+                                <input type="submit" class="btn btn-primary btn-block" id="submit" value="发布">
                             </div>
                         </form>
                     </div>
@@ -147,18 +161,25 @@
     </footer>
 </div>
 </div>
-<!-- Libs JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.2/tinymce.min.js"></script>
 {#<script src="{{ url_for("static", filename="js/tinymce.min.js") }}" defer></script>#}
 <!-- Tabler Core -->
 <script src="{{ url_for("static", filename="js/tabler.min.js") }}" defer></script>
 <script src="{{ url_for("static",filename="js/demo.min.js") }}" defer></script>
 <script>
+    let uploadFiles = []
+
+    var intervalId = setInterval(function () {
+        // 这里是你想要每2秒执行一次的代码
+        let $images = $('#images')
+        $images.val(uploadFiles);
+        console.log(uploadFiles)
+    }, 500);
     // @formatter:off
     document.addEventListener("DOMContentLoaded", function () {
         let options = {
             selector: '#tinymce-mytextarea',
-            height: 300,
+            height: 600,
             menubar: false,
             statusbar: false,
             plugins: [
@@ -172,7 +193,41 @@
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat',
             content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }',
-            images_upload_url: '/my_upload_handler'
+            images_upload_url: '{{ url_for('post.upload_image') }}',
+            images_upload_handler: function (blobInfo, success, failure) {
+                let xhr, formData;
+                xhr = new XMLHttpRequest();
+                xhr.withCredentials = false;
+                xhr.open('POST', '{{ url_for('post.upload_image') }}');
+
+                xhr.onload = function () {
+                    let json;
+
+                    if (xhr.status != 200) {
+                        failure('HTTP Error: ' + xhr.status);
+                        return;
+                    }
+
+                    json = JSON.parse(xhr.responseText);
+
+                    if (!json || typeof json.data[0].url != 'string') {
+                        failure('Invalid JSON: ' + xhr.responseText);
+                        return;
+                    }
+
+                    // 获取URL并添加到列表中
+                    let url = json.data[0].url;
+                    uploadFiles.push(url);
+
+                    success(url);
+                };
+
+                formData = new FormData();
+                formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                xhr.send(formData);
+            }
+
         }
         if (localStorage.getItem("tablerTheme") === 'dark') {
             options.skin = 'oxide-dark';
@@ -181,6 +236,9 @@
         tinyMCE.init(options);
     })
     // @formatter:on
+
+
+
 </script>
 </body>
 </html>

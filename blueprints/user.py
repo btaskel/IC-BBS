@@ -1,7 +1,8 @@
+import os
 import random
 from datetime import datetime
 
-from flask import Blueprint, request, render_template, url_for, redirect, flash, current_app, session, g
+from flask import Blueprint, request, render_template, url_for, redirect, flash, current_app, session, g, make_response
 from flask_mail import Message
 from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.security import check_password_hash
@@ -54,10 +55,10 @@ def send_email():
         message = Message(subject=title, recipients=[email], body=body)
         mail.send(message)
         cache.set(email, captcha, timeout=240)
-        return '邮件发送成功'
+        return restful.ok()
     except Exception as e:
         print(e)
-        return restful.ok()
+        return restful.params_error()
 
 
 @bp.route('/login', methods=['GET', 'POST'])
@@ -126,8 +127,11 @@ def profile(user_id):
     if request.method == 'GET':
         user = UserModel.query.get(user_id)
         is_mine = False
-        if g.user.email == user.email:
-            is_mine = True
+        try:
+            if user.email == g.user.email:
+                is_mine = True
+        except:
+            return restful.params_error()
         return render_template('front/profile.html', user=user, is_mine=is_mine)
     else:
         form = EditProfileForm(CombinedMultiDict([request.form, request.files]))
@@ -145,6 +149,7 @@ def logout():
         session.clear()
     return redirect('/')
 
+
 @bp.post('/upload')
 def upload():
     if 'image' not in request.files:
@@ -153,3 +158,51 @@ def upload():
     image = request.files['image']
     if image.filename == '':
         return redirect(url_for(''))
+
+
+@bp.post('/follow/<string:user_id>')
+def follow(user_id):
+    """关注user_id"""
+    user = g.user
+    user_to_unfollow = UserModel.query.get(user_id)
+    if user_to_unfollow is not None:
+        user.followed(user_id)
+        db.session.commit()
+        return restful.ok()
+    else:
+        return restful.params_error()
+
+
+@bp.post('/unfollow/<string:user_id>')
+def unfollow(user_id):
+    """关注user_id"""
+    user = g.user
+    user_to_unfollow = UserModel.query.get(user_id)
+    if user_to_unfollow is not None:
+        user.unfollow(user_to_unfollow)
+        db.session.commit()
+        return restful.ok()
+    else:
+        return restful.params_error()
+
+
+@bp.get('/show/<string:filename>')
+def show_image(filename):
+    file_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\user\\portraits')
+    if filename is None or filename == 'default':
+        try:
+            image_data = open(os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\user\\default\\portrait.jpg'),
+                              "rb").read()
+        except:
+            return redirect(url_for('post.post_list'))
+        response = make_response(image_data)
+        response.headers['Content-Type'] = 'image/png'
+        return response
+    else:
+        try:
+            image_data = open(os.path.join(file_dir, filename), "rb").read()
+        except:
+            return redirect(url_for('post.post_list'))
+        response = make_response(image_data)
+        response.headers['Content-Type'] = 'image/png'
+        return response

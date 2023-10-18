@@ -53,7 +53,7 @@ def create_role():
 
 
 def create_board():
-    board_names = ['生活趣事', '学习交流']
+    board_names = ['学习交流','社团活动','日常灌水']
     for board_name in board_names:
         board = BoardModel(name=board_name)
         db.session.add(board)

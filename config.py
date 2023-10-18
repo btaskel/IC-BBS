@@ -1,3 +1,6 @@
+import os.path
+
+
 class BaseConfig:
     """基本配置"""
 
@@ -6,13 +9,13 @@ class BaseConfig:
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@127.0.0.1:3306/bbs?charset=utf8mb4'
     # 设置存储最大空间（单位：MB）
     STORAGE = 8192
-    BBS_NAME = '长春大学旅游学院校园论坛'
+    BBS_NAME = '长春大学旅游学院'
 
 
 class ProductionConfig(BaseConfig):
     """生产服务器配置"""
     # 媒体文件存放路径
-    UPLOAD_FOLDER = r'./media'
+    UPLOAD_FOLDER = '.\\media'
 
     # 缓存配置
     CACHE_TYPE = 'RedisCache'

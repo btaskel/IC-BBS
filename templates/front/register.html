@@ -18,7 +18,7 @@
                     <div class="custom-box" data-aos="fade-up" data-aos-delay="0">
                         <h2 class="heading">Register</h2>
                         <form action="{{ url_for('user.register') }}" method="post">
-
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                             <div class="form-field">
                                 <label for="name">昵称</label>
                                 <input type="text" class="form-control" id="name" name="username">

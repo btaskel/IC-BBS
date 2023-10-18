@@ -14,9 +14,14 @@
 </head>
 <body>
 <div id="box">
-    <p>name</p>
-    <p id="test">BT</p>
-    <p>Asker</p>
+    <form action="{{ url_for('post.upload_image') }}" method="post" enctype="multipart/form-data">
+        <input type="text" name="title">标题
+        <input type="text" name="content">内容
+        <input type="text" name="board_id">板块id
+        <input type="file" name="image">图片
+
+        <input type="submit" value="提交">
+    </form>
 </div>
 </body>
 </html>
