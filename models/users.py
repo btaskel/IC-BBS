@@ -102,8 +102,9 @@ class UserModel(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
 
     def has_permission(self, permission):
+        """检查用户是否拥有某项权限"""
         for perm in self.role.permissions:
-            if perm.name == permission:
+            if str(perm.name) == str(permission):
                 return True
         return False
 

@@ -1,8 +1,11 @@
+import logging
+
 from flask import Flask
 
 import commands
 import config
 import hooks
+from blueprints.advert import bp as ad_bp
 from blueprints.cms import bp as cms_bp
 from blueprints.event import bp as event_bp
 from blueprints.front import bp as front_bp
@@ -10,13 +13,15 @@ from blueprints.media import bp as media_bp
 from blueprints.post import bp as post_bp
 from blueprints.test import bp as test_bp
 from blueprints.user import bp as user_bp
-from blueprints.advert import bp as ad_bp
-from exts import db, Migrate, cache, scheduler,csrf
+from exts import db, Migrate, cache, scheduler, csrf
 from exts import mail
+from shell import initLogging
+# 初始化环境
 
+logging.info('Initialization completed!')
+initLogging()
 
 app = Flask(__name__)
-
 # 读取配置信息
 app.config.from_object(config.ProductionConfig)
 
@@ -47,6 +52,7 @@ app.cli.command('create_permission')(commands.create_permission)
 app.cli.command('create_role')(commands.create_role)
 app.cli.command('create_board')(commands.create_board)
 app.cli.command('create_posts')(commands.create_posts)
+logging.info('Loading completed')
 
 if __name__ == '__main__':
     app.run(debug=True)

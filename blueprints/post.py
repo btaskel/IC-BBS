@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 from uuid import uuid4
@@ -7,7 +8,7 @@ from flask import Blueprint, render_template, request, g, redirect, url_for, fla
 from decorators import login_register
 from exts import db, csrf
 from forms.posts import CommentForm, PostForm
-from models.posts import PostModel, CommentModel, BoardModel, PostImages
+from models.posts import PostModel, CommentModel, BoardModel, PostImagesModel
 from utils import restful
 
 bp = Blueprint('post', __name__, url_prefix='/post')
@@ -16,6 +17,8 @@ bp = Blueprint('post', __name__, url_prefix='/post')
 @bp.route('/')
 def post_list():
     """返回首页信息"""
+    logging.debug(f'User {g.user.username} visited the Post post_list')
+
     board_id = request.args.get('board')
     if board_id is None:
         posts = PostModel.query.all()
@@ -32,6 +35,8 @@ def post_list():
 @bp.route('/post_detail/<int:post_id>', methods=['GET', 'POST'])
 def post_detail(post_id):
     """帖子详情和评论提交"""
+    logging.debug(f'User {g.user.username} visited the Post post_detail')
+
     boards = BoardModel.query.all()
     if request.method == 'GET':
         post = PostModel.query.get(post_id)
@@ -59,6 +64,8 @@ def add_post():
     get：返回编辑界面
     post：提交内容
     """
+    logging.debug(f'User {g.user.username} visited the Post add_post')
+
     boards = BoardModel.query.all()
     if request.method == 'GET':
         return render_template('front/add_post.html', boards=boards)
@@ -84,13 +91,13 @@ def add_post():
                     return restful.params_error()
                 try:
                     ext = image.split('.')[-1]
+                    if ext not in ['jpg', 'png', 'gif', 'jpeg']:
+                        return restful.params_error('不支持的图片格式')
                 except:
-                    return restful.params_error()
-
-                print(image)
+                    return restful.params_error('上传的图片格式无法识别')
                 if os.path.exists(image):
                     filename = os.path.basename(image)
-                    image = PostImages(name=filename, path=image)
+                    image = PostImagesModel(name=filename, path=image)
                     db.session.add(image)
                     db.session.commit()
                     post.images.append(image)
@@ -104,17 +111,13 @@ def add_post():
             return redirect(url_for('post.post_list', boards=boards))
 
 
-@bp.route('/test2')
-def test2():
-    return render_template('test.html')
-
-
 # 装饰器执行是从里到外的
 @bp.post('/upload/image')
 @csrf.exempt
 @login_register
 def upload_image():
     # 判断后缀名是否符合要求
+    logging.debug(f'User {g.user.username} visited the Post upload_image')
     f = next(iter(request.files.values()), None)
     try:
         extension = f.filename.split('.')[-1].lower()
@@ -149,6 +152,8 @@ def upload_image():
 @csrf.exempt
 @login_register
 def show_image(filename):
+    logging.debug(f'User {g.user.username} visited the Post show_image')
+
     file_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\post_image\\')
     if filename is None:
         return redirect(url_for('post.post_list'))
@@ -167,6 +172,8 @@ def show_image(filename):
 @login_register
 def remove_post(post_id):
     """删除帖子"""
+    logging.debug(f'User {g.user.username} visited the Post remove_post')
+
     user = g.user
     post = PostModel.query.get(post_id)
     if user.email == post.author.email:

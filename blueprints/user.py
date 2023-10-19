@@ -1,3 +1,4 @@
+import logging
 import os
 import random
 from datetime import datetime
@@ -18,6 +19,7 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     """用户的首页注册视图函数"""
+    logging.debug(f'User {g.user.username} visited the User register')
     if request.method == 'GET':
         return render_template('front/register.html')
 
@@ -46,6 +48,8 @@ def register():
 @bp.route('/send_email')
 def send_email():
     """发送电子邮件用于验证用户注册和登录"""
+    logging.debug(f'User {g.user.username} visited the User send_email')
+
     try:
         email = request.args.get('email')
         digits = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
@@ -64,6 +68,8 @@ def send_email():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     """用户的首页登录视图函数"""
+    logging.debug(f'User {g.user.username} visited the User login')
+
     if request.method == 'GET':
         return render_template('front/signin.html')
 
@@ -101,29 +107,10 @@ def login():
             return redirect(url_for('user.login'))
 
 
-@bp.route('/test')
-def test():
-    # s = UserModel(username='test', _password='112233445566', email='11111@hotmail.com')
-    # s2 = UserModel(username='test2', _password='112233145566', email='11211@hotmail.com')
-    #
-    # db.session.add_all([s, s2])
-    # db.session.commit()
-    s = UserModel.query.filter_by(username='test').first()
-    s2 = UserModel.query.filter_by(username='test2').first()
-
-    # 将s的关注列表中增加s2
-    s.followed.append(s2)
-    db.session.commit()
-
-    # # 让用户 A 取消关注用户 B
-    # user_a.followed.remove(user_b)
-    # db.session.commit()
-
-    return 'ok'
-
-
 @bp.route('/profile/<string:user_id>', methods=['GET', 'POST'])
 def profile(user_id):
+    logging.debug(f'User {g.user.username} visited the User profile')
+
     if request.method == 'GET':
         user = UserModel.query.get(user_id)
         is_mine = False
@@ -145,24 +132,18 @@ def profile(user_id):
 @bp.route('/logout')
 def logout():
     """退出账户"""
+    logging.debug(f'User {g.user.username} visited the User logout')
+
     if g.user:
         session.clear()
     return redirect('/')
 
 
-@bp.post('/upload')
-def upload():
-    if 'image' not in request.files:
-        flash('上传图片格式错误')
-        return redirect(url_for(''))
-    image = request.files['image']
-    if image.filename == '':
-        return redirect(url_for(''))
-
-
 @bp.post('/follow/<string:user_id>')
 def follow(user_id):
     """关注user_id"""
+    logging.debug(f'User {g.user.username} visited the User follow')
+
     user = g.user
     user_to_unfollow = UserModel.query.get(user_id)
     if user_to_unfollow is not None:
@@ -176,6 +157,8 @@ def follow(user_id):
 @bp.post('/unfollow/<string:user_id>')
 def unfollow(user_id):
     """关注user_id"""
+    logging.debug(f'User {g.user.username} visited the User unfollow')
+
     user = g.user
     user_to_unfollow = UserModel.query.get(user_id)
     if user_to_unfollow is not None:
@@ -188,6 +171,8 @@ def unfollow(user_id):
 
 @bp.get('/show/<string:filename>')
 def show_image(filename):
+    logging.debug(f'User {g.user.username} visited the User show_image')
+
     file_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\user\\portraits')
     if filename is None or filename == 'default':
         try:

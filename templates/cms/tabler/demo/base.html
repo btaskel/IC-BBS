@@ -26,7 +26,6 @@
 	 <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
 	 <meta name="description"
 			 content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!"/>
-
 	 {% block head %}
 
 	 {% endblock %}
@@ -309,21 +308,37 @@
 										  <a class="dropdown-item" href="./alerts.html">
 
 										  </a>
-										  <a class="dropdown-item" href="{{ url_for('cms.post_index') }}">
-												帖子管理
-										  </a>
-										  <a class="dropdown-item" href="{{ url_for('cms.work_index') }}">
-												创建工单
-										  </a>
-										  <a class="dropdown-item" href="{{ url_for('cms.reports_index') }}">
-												举报管理
-										  </a>
-										  <a class="dropdown-item" href="{{ url_for("cms.users_index") }}">
-												用户管理
-										  </a>
-										  <a class="dropdown-item" href="{{ url_for("cms.board_manage") }}">
-												板块管理
-										  </a>
+										  {% if user.has_permission('PermissionEnum.FRONT_USER') %}
+												<a class="dropdown-item" href="{{ url_for('cms.post_index') }}">
+													 帖子管理
+												</a>
+										  {% endif %}
+										  {% if user.has_permission('PermissionEnum.FRONT_USER') or user.has_permission('CMS_USER') %}
+												<a class="dropdown-item" href="{{ url_for('cms.work_index') }}">
+													 创建工单
+												</a>
+										  {% endif %}
+										  {% if user.has_permission('PermissionEnum.FRONT_USER') %}
+												<a class="dropdown-item" href="{{ url_for('cms.reports_index') }}">
+													 举报管理
+												</a>
+										  {% endif %}
+										  {% if user.has_permission('PermissionEnum.CMS_USER') %}
+												<a class="dropdown-item" href="{{ url_for("cms.users_index") }}">
+													 用户管理
+												</a>
+										  {% endif %}
+										  {% if user.has_permission('PermissionEnum.FRONT_USER') %}
+												<a class="dropdown-item" href="{{ url_for("cms.board_manage") }}">
+													 板块管理
+												</a>
+										  {% endif %}
+										  {% if user.has_permission('PermissionEnum.FRONT_USER') %}
+												<a class="dropdown-item" href="{{ url_for("cms.board_manage") }}">
+													 推广管理
+												</a>
+										  {% endif %}
+
 
 					 <li class="nav-item">
 						  <a class="nav-link" href="{{ url_for("cms.work_index") }}">
@@ -339,20 +354,20 @@
                   </span>
 						  </a>
 					 </li>
-{#					 <li class="nav-item">#}
-{#						  <a class="nav-link" href="./icons.html">#}
-{#                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/ghost -->#}
-{#                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"#}
-{#								 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"#}
-{#								 stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path#}
-{#									 d="M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7"/><path#}
-{#									 d="M10 10l.01 0"/><path d="M14 10l.01 0"/><path d="M10 14a3.5 3.5 0 0 0 4 0"/></svg>#}
-{#                  </span>#}
-{#								<span class="nav-link-title">#}
-{#                    4231 icons#}
-{#                  </span>#}
-{#						  </a>#}
-{#					 </li>#}
+					 {#					 <li class="nav-item">#}
+					 {#						  <a class="nav-link" href="./icons.html">#}
+					 {#                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/ghost -->#}
+					 {#                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"#}
+					 {#								 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"#}
+					 {#								 stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path#}
+					 {#									 d="M5 11a7 7 0 0 1 14 0v7a1.78 1.78 0 0 1 -3.1 1.4a1.65 1.65 0 0 0 -2.6 0a1.65 1.65 0 0 1 -2.6 0a1.65 1.65 0 0 0 -2.6 0a1.78 1.78 0 0 1 -3.1 -1.4v-7"/><path#}
+					 {#									 d="M10 10l.01 0"/><path d="M14 10l.01 0"/><path d="M10 14a3.5 3.5 0 0 0 4 0"/></svg>#}
+					 {#                  </span>#}
+					 {#								<span class="nav-link-title">#}
+					 {#                    4231 icons#}
+					 {#                  </span>#}
+					 {#						  </a>#}
+					 {#					 </li>#}
 				</ul>
 		  </div>
 	 </div>

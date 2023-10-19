@@ -10,7 +10,6 @@ def check_timeout():
     定期检查工单超时
     """
     works = WorkModel.query.all()
-
     for work in works:
         term = work.end_time - work.create_time
         time = datetime.datetime.now() - term

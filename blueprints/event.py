@@ -1,3 +1,5 @@
+import logging
+
 from flask import render_template, Blueprint, request, g, flash, redirect, url_for
 
 from exts import db
@@ -10,6 +12,8 @@ bp = Blueprint('event', __name__, url_prefix='/event')
 
 @bp.route('/report/<int:post_id>', methods=['GET', 'POST'])
 def post_report(post_id):
+    logging.debug(f'User {g.user.username} visited the Event post_report')
+
     if request.method == 'GET':
         post = PostModel.query.get(post_id)
         # todo: 渲染举报界面

@@ -1,10 +1,13 @@
+import logging
 from datetime import datetime, timedelta
 
 from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, flash
 
 from exts import db, csrf
+from forms.advert import AdvertForm
 from forms.cms import WorkForm, BoardEditForm
 from hooks import permission_required
+from models.advert import AdvertModel
 from models.event import WorkModel, ReportModel
 from models.event import WorkTypeEnum
 from models.posts import PostModel, BoardModel
@@ -28,6 +31,7 @@ def cms_index():
     内容管理系统主页
     :return:
     """
+    logging.debug(f'User {g.user.username} visited the CMS homepage')
     now = datetime.now()
     seven_days_ago = now - timedelta(days=7)
     posts = PostModel.query.all()
@@ -50,7 +54,7 @@ def cms_index():
         'post_list': post_list
     }
 
-    return render_template('cms/tabler/demo/home/home.html', var=var)
+    return render_template('cms/tabler/demo/home/home.html', var=var, user=g.user)
 
 
 @bp.route('/work_order', methods=['GET', 'POST'])
@@ -62,7 +66,8 @@ def work_order():
     :return:
     """
     if request.method == 'GET':
-        return render_template('cms/tabler/demo/sub/pubic_work_order.html', WorkTypeEnum=WorkTypeEnum)
+        logging.debug(f'User {g.user.username} visited the CMS work_order')
+        return render_template('cms/tabler/demo/sub/pubic_work_order.html', WorkTypeEnum=WorkTypeEnum, user=g.user)
 
     elif request.method == 'POST':
         form = WorkForm(request.form)
@@ -96,11 +101,11 @@ def work_index():
     r6 = session.query(Users).filter(text("id<:value and name=:name")).params(value=224, name='fred').order_by(Users.id).all()
     r7 = session.query(Users).from_statement(text("SELECT * FROM users where name=:name")).params(name='ed').all()
     """
+    logging.debug(f'User {g.user.username} visited the CMS work_index')
 
     # work_list = WorkModel.query.filter_by(active=True
     # print(work_list)
-    user = g.user
-    return render_template('cms/tabler/demo/work_order.html', user=user)
+    return render_template('cms/tabler/demo/work_order.html', user=g.user)
 
 
 @bp.route('/complete_work_order')
@@ -109,12 +114,13 @@ def complete_work_order():
     """
     完成的工单清单
     """
+    logging.debug(f'User {g.user.username} visited the CMS complete_work_order')
     ls = []
     works = WorkModel.query.all()
     for work in works:
         if work.finish:
             ls.append(work)
-    return render_template("cms/tabler/demo/complete_work_order.html", works=ls)
+    return render_template("cms/tabler/demo/complete_work_order.html", works=ls, user=g.user)
 
 
 @bp.route('/unfinished_work_order')
@@ -123,6 +129,8 @@ def unfinished_work_order():
     """
     未完成的工单清单
     """
+    logging.debug(f'User {g.user.username} visited the CMS unfinished_work_order')
+
     works = WorkModel.query.all()
     user = g.user
     return render_template("cms/tabler/demo/unfinished_work_order.html", works=works, user=user)
@@ -132,6 +140,8 @@ def unfinished_work_order():
 @permission_required(PermissionEnum.FRONT_USER)
 def timeout_work_order():
     """超时的工单清单"""
+    logging.debug(f'User {g.user.username} visited the CMS timeout_work_order')
+
     works = WorkModel.query.all()
     user = g.user
     return render_template("cms/tabler/demo/timeout_work_order.html", works=works, user=user)
@@ -141,27 +151,31 @@ def timeout_work_order():
 @permission_required(PermissionEnum.FRONT_USER)
 def train():
     """工单回收站"""
+    logging.debug(f'User {g.user.username} visited the CMS timeout_work_order')
+
     works = WorkModel.query.all()
     user = g.user
     return render_template("cms/tabler/demo/train_order_work.html", works=works, user=user)
 
 
-@bp.route('/search_user', methods=['GET', 'POST'])
-@csrf.exempt
-@permission_required(PermissionEnum.FRONT_USER)
-def search_user():
-    if request.method == 'GET':
-        return render_template('cms/tabler/demo/search.html')
-
-    elif request.method == 'POST':
-        user_id = request.args.get('user_id')
-        user_name = request.args.get('user_name')
-        if user_id:
-            user = UserModel.query.get(user_id)
-        else:
-            user = UserModel.query.filter_by(user_name=user_name)
-
-        return render_template('cms/tabler/demo/users.html', user=user)
+# @bp.route('/search_user', methods=['GET', 'POST'])
+# @csrf.exempt
+# @permission_required(PermissionEnum.FRONT_USER)
+# def search_user():
+#     if request.method == 'GET':
+#         logging.debug(f'User {g.user.username} visited the CMS search_user')
+#
+#         return render_template('cms/tabler/demo/search.html')
+#
+#     elif request.method == 'POST':
+#         user_id = request.args.get('user_id')
+#         user_name = request.args.get('user_name')
+#         if user_id:
+#             user = UserModel.query.get(user_id)
+#         else:
+#             user = UserModel.query.filter_by(user_name=user_name)
+#
+#         return render_template('cms/tabler/demo/users.html', user=user)
 
 
 # @bp.route('/post_index', methods=['GET'])
@@ -169,6 +183,8 @@ def search_user():
 @bp.get('/post_index')
 @permission_required(PermissionEnum.FRONT_USER)
 def post_index():
+    logging.debug(f'User {g.user.username} visited the CMS post_index')
+
     if request.method == 'GET':
         user = g.user
         posts = PostModel.query.all()
@@ -179,6 +195,8 @@ def post_index():
 @csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_post(post_id):
+    logging.debug(f'User {g.user.username} visited the CMS ban_post')
+
     post = PostModel.query.get(post_id)
     if post:
         post.active = False
@@ -190,6 +208,8 @@ def ban_post(post_id):
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_posts():
     """封禁帖子"""
+    logging.debug(f'User {g.user.username} visited the CMS ban_posts')
+
     user = g.user
     posts = PostModel.query.all()
     return render_template("cms/tabler/demo/post/ban_posts.html", user=user, posts=posts)
@@ -200,18 +220,22 @@ def ban_posts():
 @permission_required(PermissionEnum.FRONT_USER)
 def restore_post(post_id):
     """解封帖子"""
+    logging.debug(f'User {g.user.username} visited the CMS restore_post')
+
     post = PostModel.query.get(post_id)
     if post:
         post.active = True
         db.session.commit()
         flash(f"解封{post_id}成功")
-    return 'ok'
+    return restful.ok(f"解封{post_id}成功")
 
 
 @bp.get('/reports_index')
 @permission_required(PermissionEnum.FRONT_USER)
 def reports_index():
     """举报列表：列出所有举报"""
+    logging.debug(f'User {g.user.username} visited the CMS reports_index')
+
     reports = ReportModel.query.all()
     return render_template("cms/tabler/demo/report/reports_index.html", user=g.user, reports=reports)
 
@@ -220,6 +244,8 @@ def reports_index():
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_report(report_id):
     """举报列表：将举报对象关闭活动"""
+    logging.debug(f'User {g.user.username} visited the CMS ban_report')
+
     report = ReportModel.query.get(report_id)
     if report:
         report.active = False
@@ -236,6 +262,8 @@ def reported_resolved():
     已解决的举报：获取被封禁的举报列表
     :return:
     """
+    logging.debug(f'User {g.user.username} visited the CMS reported_resolved')
+
     if request.method == 'GET':
         reports = ReportModel.query.all()
         return render_template("cms/tabler/demo/report/reported_resolved.html", user=g.user, reports=reports)
@@ -255,6 +283,8 @@ def reported_resolved():
 @csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def report_bat():
+    logging.debug(f'User {g.user.username} visited the CMS report_bat')
+
     """举报批量处理：批量处理界面"""
     if request.method == 'GET':
         reports = ReportModel.query.all()
@@ -267,6 +297,8 @@ def report_bat():
 @bp.get('/user_index')
 @permission_required(PermissionEnum.FRONT_USER)
 def users_index():
+    logging.debug(f'User {g.user.username} visited the CMS users_index')
+
     """用户列表：获取所有用户"""
     users = UserModel.query.all()
     return render_template("cms/tabler/demo/user/users_index.html", users=users, user=g.user)
@@ -277,6 +309,8 @@ def users_index():
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_user(user_id):
     """用户列表：封禁用户"""
+    logging.debug(f'User {g.user.username} visited the CMS ban_user')
+
     user = UserModel.query.get(user_id)
     if user:
         user.active = False
@@ -287,6 +321,7 @@ def ban_user(user_id):
 @permission_required(PermissionEnum.CMS_USER)
 def restore_user_index():
     """封禁的用户：获取被封禁的用户"""
+    logging.debug(f'User {g.user.username} visited the CMS restore_user_index')
     users = UserModel.query.all()
     return render_template("cms/tabler/demo/user/ban_users.html", users=users, user=g.user)
 
@@ -295,6 +330,7 @@ def restore_user_index():
 @csrf.exempt
 def restore_user(user_id):
     """封禁的举报：恢复举报"""
+    logging.debug(f'User {g.user.username} visited the CMS restore_user')
     user = UserModel.query.get(user_id)
     if user:
         user.active = True
@@ -306,6 +342,7 @@ def restore_user(user_id):
 @permission_required(PermissionEnum.CMS_USER)
 def custom_permissions():
     """自定义用户权限"""
+    logging.debug(f'User {g.user.username} visited the CMS custom_permissions')
     user = g.user
     roles = RoleModel.query.all()
     return render_template("cms/tabler/demo/user/custom_permissions.html", user=user, roles=roles)
@@ -315,6 +352,7 @@ def custom_permissions():
 @permission_required(PermissionEnum.CMS_USER)
 def custom_user_permission():
     """自定义用户权限"""
+    logging.debug(f'User {g.user.username} visited the CMS custom_user_permission')
     user_id = request.args.get('user_id')
     role_id = request.args.get('role_id')
 
@@ -328,6 +366,7 @@ def custom_user_permission():
         flash("错误：用户不存在或职位角色不存在！")
         return restful.params_error()
 
+
 @bp.route('/board_manage', methods=['GET', 'POST'])
 @csrf.exempt
 @permission_required(PermissionEnum.CMS_USER)
@@ -337,6 +376,7 @@ def board_manage():
     POST：提交修改板块内容
     :return:
     """
+    logging.debug(f'User {g.user.username} visited the CMS board_manage')
     if request.method == 'GET':
         boards = BoardModel.query.all()
         return render_template('cms/tabler/demo/board/boards_index.html', user=g.user, boards=boards)
@@ -366,3 +406,37 @@ def board_manage():
                 db.session.commit()
                 flash(f'删除板块{board_name}成功')
         return redirect(url_for('cms.board_manage'))
+
+
+@bp.route('/advert_manage', methods=['GET', 'POST'])
+@csrf.exempt
+@permission_required(PermissionEnum.CMS_USER)
+def advert_manage():
+    """推广管理"""
+    if request.method == 'GET':
+        adverts = AdvertModel.query.all()
+        return render_template('cms/tabler/demo/advert/advert_index.html', adverts=adverts, user=g.user)
+    else:
+        form = AdvertForm(request.form)
+        if form.validate():
+            title = form.title.data
+            content = form.content.data
+            url = form.content.data
+            advert = AdvertModel(title=title, content=content, url=url)
+            db.session.add(advert)
+            db.session.commit()
+        else:
+            flash('推广增加失败！格式错误.')
+            return redirect(url_for('cms.cms_index'))
+
+
+@bp.post('/advert_delete')
+@csrf.exempt
+@permission_required(PermissionEnum.CMS_USER)
+def advert_delete():
+    advert_id = request.form.get('advert_id')
+    if advert_id:
+        advert = AdvertModel.query.get(advert_id)
+        if advert:
+            db.session.delete(advert)
+            db.session.commit()
