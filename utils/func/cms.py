@@ -3,32 +3,35 @@ from datetime import timedelta, datetime
 from sqlalchemy import and_
 
 
-def recent_count(Model):
+def recent_count(Model, days=30):
     """
-    计数当前30天内的新内容添加数据
+    获取在days天内某一模型数量所增加的量
+    :param days:
     :param Model:
     :return List:
     """
     now = datetime.now()
     list_ = []
-    for i in range(30):
+    if days == 'all':
+        return len(Model.query.all())
+
+    for i in range(days):
         time = now - timedelta(days=i)
         time_ago = now - timedelta(days=i + 1)
-        user_number = len(
-            Model.query.filter(and_(time_ago < Model.create_time, Model.create_time < time)).all())
+        user_number = len(Model.query.filter(and_(time_ago < Model.create_time, Model.create_time < time)).all())
         list_.append(user_number)
     list_.reverse()
     return list_
 
 
-def week_count(Model):
+def time_count(Model, days=7):
     """
-    计数当前7天内的新内容和添加的对象
     :param Model:
-    :return Object:
+    :param days:
+    :return:
     """
-
+    if days == 'all':
+        return len(Model.query.all())
     now = datetime.now()
-    seven_days_ago = now - timedelta(days=7)
-    data_7 = Model.query.filter(Model.create_time >= seven_days_ago).all()
-    return data_7
+    time_ago = now - timedelta(days=days)
+    return Model.query.filter(and_(Model.create_time > time_ago, now > Model.create_time)).all()

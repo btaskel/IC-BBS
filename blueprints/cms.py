@@ -13,7 +13,7 @@ from models.event import WorkTypeEnum
 from models.posts import PostModel, BoardModel
 from models.users import PermissionEnum, UserModel, RoleModel
 from utils import restful
-from utils.func.cms import recent_count, week_count
+from utils.func.cms import recent_count, time_count
 
 bp = Blueprint('cms', __name__, url_prefix='/cms')
 
@@ -24,7 +24,7 @@ bp = Blueprint('cms', __name__, url_prefix='/cms')
 #         return redirect(url_for('front.index'))
 
 
-@bp.route('/')
+@bp.get('/')
 @permission_required(PermissionEnum.CMS_USER)
 def cms_index():
     """
@@ -35,12 +35,13 @@ def cms_index():
     now = datetime.now()
     seven_days_ago = now - timedelta(days=7)
     posts = PostModel.query.all()
-    posts_7 = week_count(PostModel)
+    posts_7 = time_count(PostModel)
     users = UserModel.query.all()
-    users_7 = week_count(UserModel)
+    users_7 = time_count(UserModel)
 
     user_list = recent_count(UserModel)
     post_list = recent_count(PostModel)
+    report_list = recent_count(ReportModel)
 
     storage = current_app.config['STORAGE']
 
@@ -51,10 +52,43 @@ def cms_index():
         'users_7': users_7,
         'storage': storage,
         'user_list': user_list,
-        'post_list': post_list
+        'post_list': post_list,
+        'report_list': report_list
     }
-
     return render_template('cms/tabler/demo/home/home.html', var=var, user=g.user)
+
+
+@bp.get('/home_info')
+@permission_required(PermissionEnum.FRONT_USER)
+def home_info():
+    model_name = request.args.get('model')
+    days = request.args.get('days')
+
+    if isinstance(days, int):
+        if days > 30 or days < 1:
+            return restful.params_error('获取的日期超过范围')
+
+    elif days.lower() == 'all':
+        pass
+
+    else:
+        return restful.params_error('获取的日期的格式不正确')
+
+    match model_name.lower():
+        case 'report':
+            model = ReportModel
+        case 'post':
+            model = PostModel
+        case 'user':
+            model = UserModel
+        case 'work':
+            model = WorkModel
+        case _:
+            return restful.server_error('没有找到对应模型')
+
+    return restful.ok({
+        'result': recent_count(model, days=days)
+    })
 
 
 @bp.route('/work_order', methods=['GET', 'POST'])
@@ -67,7 +101,7 @@ def work_order():
     """
     if request.method == 'GET':
         logging.debug(f'User {g.user.username} visited the CMS work_order')
-        return render_template('cms/tabler/demo/sub/pubic_work_order.html', WorkTypeEnum=WorkTypeEnum, user=g.user)
+        return render_template('cms/tabler/demo/work/pubic_work_order.html', WorkTypeEnum=WorkTypeEnum, user=g.user)
 
     elif request.method == 'POST':
         form = WorkForm(request.form)
@@ -105,7 +139,7 @@ def work_index():
 
     # work_list = WorkModel.query.filter_by(active=True
     # print(work_list)
-    return render_template('cms/tabler/demo/work_order.html', user=g.user)
+    return render_template('cms/tabler/demo/work/work_order.html', user=g.user)
 
 
 @bp.route('/complete_work_order')
@@ -120,7 +154,7 @@ def complete_work_order():
     for work in works:
         if work.finish:
             ls.append(work)
-    return render_template("cms/tabler/demo/complete_work_order.html", works=ls, user=g.user)
+    return render_template("cms/tabler/demo/work/complete_work_order.html", works=ls, user=g.user)
 
 
 @bp.route('/unfinished_work_order')
@@ -133,7 +167,7 @@ def unfinished_work_order():
 
     works = WorkModel.query.all()
     user = g.user
-    return render_template("cms/tabler/demo/unfinished_work_order.html", works=works, user=user)
+    return render_template("cms/tabler/demo/work/unfinished_work_order.html", works=works, user=user)
 
 
 @bp.route('timeout_work_order')
@@ -144,7 +178,7 @@ def timeout_work_order():
 
     works = WorkModel.query.all()
     user = g.user
-    return render_template("cms/tabler/demo/timeout_work_order.html", works=works, user=user)
+    return render_template("cms/tabler/demo/work/timeout_work_order.html", works=works, user=user)
 
 
 @bp.route('train')
@@ -155,7 +189,7 @@ def train():
 
     works = WorkModel.query.all()
     user = g.user
-    return render_template("cms/tabler/demo/train_order_work.html", works=works, user=user)
+    return render_template("cms/tabler/demo/work/train_order_work.html", works=works, user=user)
 
 
 # @bp.route('/search_user', methods=['GET', 'POST'])

@@ -3,22 +3,26 @@
 {% block head %}
 	 <meta name="canonical" content="https://preview.tabler.io/blank.html">
 	 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 	 <script>
 		  $(function () {
 				$('a.link-muted.delete').each(function () {
 					 $(this).click(function (event) {
 						  event.preventDefault()
-						  let post_id = $(this).attr("id")// 这里是你想要恢复的帖子的id
+						  let report_id = $(this).attr("id")
 						  let box = $(this)
 						  $.ajax({
-								url: 'ban_posts/' + post_id,
+								url: 'reported_resolved',
 								type: 'POST',
+								data: {
+									 "report_id": report_id
+								},
 								success: function () {
 									 box.parent().parent().parent().parent().remove()
 								},
 								error: function (error) {
 									 console.log(error);
-									 alert("解锁帖子失败！")
+									 alert("重启举报失败！")
 								}
 						  });
 					 });
@@ -214,7 +218,8 @@
 						  <div class="nav-item dropdown">
 								<a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
 									aria-label="Open user menu">
-									 <span class="avatar avatar-sm" style="background-image: url({{ url_for('user.show_image', filename=user.portrait) }})"></span>
+									 <span class="avatar avatar-sm"
+											 style="background-image: url({{ url_for('user.show_image', filename=user.portrait) }})"></span>
 									 <div class="d-none d-xl-block ps-2">
 										  <div>{{ user.username }}</div>
 										  <div class="mt-1 small text-secondary">{{ user.role.name }}</div>
@@ -252,7 +257,7 @@
 										  </a>
 									 </li>
 									 <li class="nav-item dropdown">
-										  <a class="nav-link dropdown-toggle" href="{{ url_for("cms.post_index") }}"
+										  <a class="nav-link dropdown-toggle" href="{{ url_for("cms.reports_index") }}"
 											  data-bs-toggle="dropdown"
 											  id="posts_list"
 											  data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -264,7 +269,7 @@
 										d="M12 12l0 9"/><path d="M12 12l-8 -4.5"/><path d="M16 5.25l-8 4.5"/></svg>
                     </span>
 												<span class="nav-link-title">
-                      帖子列表
+                      举报列表
                     </span>
 										  </a>
 										  <div class="dropdown-menu">
@@ -464,7 +469,7 @@
 										  </div>
 									 </li>
 									 <li class="nav-item active">
-										  <a class="nav-link" href="{{ url_for("cms.ban_posts") }}">
+										  <a class="nav-link" href="{{ url_for("cms.reported_resolved") }}">
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                       <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
 									stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -473,9 +478,107 @@
 										d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"></path></svg>
                     </span>
 												<span class="nav-link-title">
-                      封禁的帖子
+                      已解决的举报
                     </span>
 										  </a>
+									 </li>
+									 <li class="nav-item dropdown">
+										  <a class="nav-link dropdown-toggle" href="{{ url_for("cms.report_bat") }}"
+											  data-bs-toggle="dropdown"
+											  data-bs-auto-close="outside" role="button" aria-expanded="false">
+                    <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                      <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+									stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+									stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path
+										d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"/></svg>
+                    </span>
+												<span class="nav-link-title">
+                      批量处理
+                    </span>
+										  </a>
+										  <div class="dropdown-menu">
+												<div class="dropdown-menu-columns">
+													 <div class="dropdown-menu-column">
+														  <a class="dropdown-item" href="./empty.html">
+																Empty page
+														  </a>
+														  <a class="dropdown-item" href="./cookie-banner.html">
+																Cookie banner
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./activity.html">
+																Activity
+														  </a>
+														  <a class="dropdown-item" href="./gallery.html">
+																Gallery
+														  </a>
+														  <a class="dropdown-item" href="./invoice.html">
+																Invoice
+														  </a>
+														  <a class="dropdown-item" href="./search-results.html">
+																Search results
+														  </a>
+														  <a class="dropdown-item" href="./pricing.html">
+																Pricing cards
+														  </a>
+														  <a class="dropdown-item" href="./pricing-table.html">
+																Pricing table
+														  </a>
+														  <a class="dropdown-item" href="./faq.html">
+																FAQ
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./users.html">
+																Users
+														  </a>
+														  <a class="dropdown-item" href="./license.html">
+																License
+														  </a>
+													 </div>
+													 <div class="dropdown-menu-column">
+														  <a class="dropdown-item" href="./logs.html">
+																Logs
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./music.html">
+																Music
+														  </a>
+														  <a class="dropdown-item" href="./photogrid.html">
+																Photogrid
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./tasks.html">
+																Tasks
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./uptime.html">
+																Uptime monitor
+														  </a>
+														  <a class="dropdown-item" href="./widgets.html">
+																Widgets
+														  </a>
+														  <a class="dropdown-item" href="./wizard.html">
+																Wizard
+														  </a>
+														  <a class="dropdown-item" href="./settings.html">
+																Settings
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./trial-ended.html">
+																Trial ended
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./job-listing.html">
+																Job listing
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+														  <a class="dropdown-item" href="./page-loader.html">
+																Page loader
+																<span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+														  </a>
+													 </div>
+												</div>
+										  </div>
 									 </li>
 									 <li class="nav-item">
 										  <a class="nav-link" href="{{ url_for("cms.train") }}">
@@ -513,28 +616,20 @@
 		  </header>
 		  <div class="page-wrapper" id="display_posts">
 				<!-- Page body -->
-				{% for post in posts %}
-					 {% if not post.active %}
+				{% for report in reports %}
+					 {% if not report.active %}
 						  <div style="width: 50%; margin: 1% 5%; display: inline-block;">
 								<div class="col-12">
 									 <div class="card card-sm">
 										  <div class="card-body">
-												<h3 class="card-title">{{ post.title }}</h3>
+												<h3 class="card-title">{{ report.title }}</h3>
 												<div class="ratio ratio-16x9">
-													 <span disabled="true" id="{{ post.id }}"></span>
-													 <a href="{{ url_for("post.post_detail", post_id=post.id) }}">{{ post.content }}</a>
+													 <a href="{{ url_for("post.post_detail", post_id=report.report_post_id) }}">{{ report.content }}</a>
 												</div>
 												<div class="mt-4">
 													 <div class="row">
 														  <div class="col">
-																<div class="avatar-list avatar-list-stacked">
-																	 <span class="avatar avatar-xs rounded">EP</span>
-																	 <span class="avatar avatar-xs rounded"
-																			 style="background-image: url(./static/avatars/002f.jpg)"></span>
-																	 <span class="avatar avatar-xs rounded"
-																			 style="background-image: url(./static/avatars/003f.jpg)"></span>
-																	 <span class="avatar avatar-xs rounded">HS</span>
-																</div>
+
 														  </div>
 														  <div class="col-auto text-secondary">
 																<button class="switch-icon switch-icon-scale"
@@ -559,14 +654,14 @@
                                   </span>
 																</button>
 																{% with state = "封禁中" %}
-																	 {% if post.active %}
+																	 {% if report.active %}
 																		  {% set state = "正常" %}
 																	 {% endif %}
 																	 <span>状态：{{ state }}</span>
 																{% endwith %}
 														  </div>
 														  <div class="col-auto">
-																<a href="{{ url_for("user.profile", user_id=post.author.id) }}"
+																<a href="{{ url_for("user.profile", user_id=report.post.author.id) }}"
 																	class="link-muted">
 																	 <!-- Download SVG icon from http://tabler-icons.io/i/message -->
 																	 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
@@ -579,23 +674,22 @@
 																		  <path d="M8 13h6"></path>
 																		  <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"></path>
 																	 </svg>
-																	 作者：{{ post.author.username }} | 创建时间：{{ post.create_time }}</a>
+																	 被举报文章作者：{{ report.user.username }} | 创建时间：{{ report.create_time }}
+																</a>
 														  </div>
 														  <div class="col-auto">
-																<a id="{{ post.id }}" href="#"
+																<a id="{{ report.id }}" href="#"
 																	class="link-muted delete">
 																	 <!-- Download SVG icon from http://tabler-icons.io/i/share -->
 																	 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-																			height="24"
-																			viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-																			fill="none"
-																			stroke-linecap="round" stroke-linejoin="round">
-																		  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-																		  <path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-																		  <path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-																		  <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-																		  <path d="M8.7 10.7l6.6 -3.4"></path>
-																		  <path d="M8.7 13.3l6.6 3.4"></path>
+																			height="24" viewBox="0 0 24 24" stroke-width="2"
+																			stroke="currentColor" fill="none" stroke-linecap="round"
+																			stroke-linejoin="round">
+																		  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+																		  <path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16zm-9.489 5.14a1 1 0 0 0 -1.218 1.567l1.292 1.293l-1.292 1.293l-.083 .094a1 1 0 0 0 1.497 1.32l1.293 -1.292l1.293 1.292l.094 .083a1 1 0 0 0 1.32 -1.497l-1.292 -1.293l1.292 -1.293l.083 -.094a1 1 0 0 0 -1.497 -1.32l-1.293 1.292l-1.293 -1.292l-.094 -.083z"
+																				  stroke-width="0" fill="currentColor"/>
+																		  <path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z"
+																				  stroke-width="0" fill="currentColor"/>
 																	 </svg>
 																</a>
 														  </div>

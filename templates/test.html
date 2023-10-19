@@ -5,23 +5,22 @@
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
-        $(function (){
-            let $box = $("#box")
-            let p_ = $("#test")
-            p_.remove()
-        })
+
     </script>
 </head>
 <body>
 <div id="box">
-    <form action="{{ url_for('post.upload_image') }}" method="post" enctype="multipart/form-data">
-        <input type="text" name="title">标题
-        <input type="text" name="content">内容
-        <input type="text" name="board_id">板块id
-        <input type="file" name="image">图片
-
-        <input type="submit" value="提交">
-    </form>
+    <a href="{{ url_for('test.test2') }}" id="click_me">awdawdaw</a>
+    <p id="demo">None</p>
 </div>
+<script>
+    $('#click_me').click(function (event){
+        event.preventDefault()
+        $.get('{{ url_for('test.test2') }}', function (data, status){
+            console.log(data)
+            console.log(status)
+        })
+    })
+</script>
 </body>
 </html>
