@@ -19,8 +19,3 @@ def get_logo():
     response = make_response(image_data)
     response.headers['Content-Type'] = 'image/png'
     return response
-
-@bp.get('/bbs_name')
-def bbs_name():
-    print(current_app.config['BBS_NAME'])
-    return current_app.config['BBS_NAME']

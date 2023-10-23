@@ -18,9 +18,8 @@ from exts import db, Migrate, cache, scheduler, csrf
 from exts import mail
 from shell import initLogging
 # 初始化环境
-
-logging.info('Initialization completed!')
 initLogging()
+logging.info('Initialization completed!')
 
 app = Flask(__name__)
 # 读取配置信息
@@ -54,6 +53,7 @@ app.cli.command('create_permission')(commands.create_permission)
 app.cli.command('create_role')(commands.create_role)
 app.cli.command('create_board')(commands.create_board)
 app.cli.command('create_posts')(commands.create_posts)
+app.cli.command('clear_logs')(commands.clear_logs)
 logging.info('Loading completed')
 
 if __name__ == '__main__':

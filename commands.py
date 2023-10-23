@@ -1,3 +1,5 @@
+import os
+
 import click
 
 from exts import db
@@ -69,6 +71,17 @@ def create_posts():
     db.session.add(post)
     db.session.commit()
     click.echo('创建文章成功')
+
+def clear_logs():
+    path = 'logs\\'
+    dirs = os.listdir(path)
+    for file in dirs:
+        if file.endswith('.log'):
+            try:
+                os.remove(os.path.join(path,file))
+            except Exception as e:
+                print(e)
+                print('请等待服务器关闭后再清理日志')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,314 @@
+2023-10-23 19:27:19,962 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-23 19:27:19,962 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-23 19:27:19,963 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-23 19:27:19,963 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-23 19:27:19,965 - INFO -  * Restarting with stat
+2023-10-23 19:27:19,965 - INFO -  * Restarting with stat
+2023-10-23 19:27:20,708 - WARNING -  * Debugger is active!
+2023-10-23 19:27:20,708 - WARNING -  * Debugger is active!
+2023-10-23 19:27:20,713 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:27:20,713 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:28:01,479 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "GET /post/post_detail/1 HTTP/1.1" 200 -
+2023-10-23 19:28:01,479 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "GET /post/post_detail/1 HTTP/1.1" 200 -
+2023-10-23 19:28:01,661 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,661 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,668 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,668 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,672 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,672 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,677 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,677 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,682 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,682 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,689 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,691 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,689 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,691 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,691 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,691 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,695 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,695 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,696 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/post_detail.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,696 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/css/post_detail.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,711 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,711 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,713 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,713 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,720 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,720 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,729 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,729 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,731 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,735 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,735 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,731 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,735 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,735 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,741 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,741 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,747 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,747 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,749 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,749 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,750 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,750 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,809 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+2023-10-23 19:28:01,809 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:01] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+2023-10-23 19:28:02,065 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\shell.py', reloading
+2023-10-23 19:28:02,065 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\shell.py', reloading
+2023-10-23 19:28:02,262 - INFO -  * Restarting with stat
+2023-10-23 19:28:02,262 - INFO -  * Restarting with stat
+2023-10-23 19:28:03,194 - WARNING -  * Debugger is active!
+2023-10-23 19:28:03,198 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:28:49,803 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\shell.py', reloading
+2023-10-23 19:28:49,961 - INFO -  * Restarting with stat
+2023-10-23 19:28:49,961 - INFO -  * Restarting with stat
+2023-10-23 19:28:52,365 - INFO - Initialization completed!
+2023-10-23 19:28:52,441 - INFO - Loading completed
+2023-10-23 19:28:52,450 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-23 19:28:52,450 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-23 19:28:52,452 - INFO -  * Restarting with stat
+2023-10-23 19:28:53,240 - INFO - Initialization completed!
+2023-10-23 19:28:53,342 - INFO - Loading completed
+2023-10-23 19:28:53,346 - WARNING -  * Debugger is active!
+2023-10-23 19:28:53,350 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:28:54,788 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[32mGET / HTTP/1.1[0m" 302 -
+2023-10-23 19:28:54,830 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "GET /post/ HTTP/1.1" 200 -
+2023-10-23 19:28:54,887 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,890 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,897 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,898 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,906 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,906 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,914 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,915 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,917 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,926 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,928 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,928 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,939 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,939 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,942 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,952 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,952 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,953 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,962 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:54,962 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:54] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:28:55,056 - INFO - 127.0.0.1 - - [23/Oct/2023 19:28:55] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+2023-10-23 19:30:04,647 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\commands.py', reloading
+2023-10-23 19:30:04,780 - INFO -  * Restarting with stat
+2023-10-23 19:31:46,769 - INFO -  * Restarting with stat
+2023-10-23 19:31:47,531 - INFO - Initialization completed!
+2023-10-23 19:31:47,598 - INFO - Loading completed
+2023-10-23 19:31:47,602 - WARNING -  * Debugger is active!
+2023-10-23 19:31:47,606 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:31:49,726 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\commands.py', reloading
+2023-10-23 19:31:49,859 - INFO -  * Restarting with stat
+2023-10-23 19:31:50,582 - INFO - Initialization completed!
+2023-10-23 19:31:50,651 - INFO - Loading completed
+2023-10-23 19:31:50,655 - WARNING -  * Debugger is active!
+2023-10-23 19:31:50,658 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:32:00,021 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\commands.py', reloading
+2023-10-23 19:32:00,136 - INFO -  * Restarting with stat
+2023-10-23 19:32:00,797 - INFO - Initialization completed!
+2023-10-23 19:32:00,867 - INFO - Loading completed
+2023-10-23 19:32:00,871 - WARNING -  * Debugger is active!
+2023-10-23 19:32:00,874 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:32:09,545 - INFO - Initialization completed!
+2023-10-23 19:32:09,613 - INFO - Loading completed
+2023-10-23 19:32:28,803 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\app.py', reloading
+2023-10-23 19:32:28,918 - INFO -  * Restarting with stat
+2023-10-23 19:32:29,612 - INFO - Initialization completed!
+2023-10-23 19:32:29,679 - INFO - Loading completed
+2023-10-23 19:32:29,683 - WARNING -  * Debugger is active!
+2023-10-23 19:32:29,686 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:32:30,848 - INFO - Initialization completed!
+2023-10-23 19:32:30,914 - INFO - Loading completed
+2023-10-23 19:32:39,274 - INFO - Initialization completed!
+2023-10-23 19:32:39,343 - INFO - Loading completed
+2023-10-23 19:32:39,351 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-23 19:32:39,351 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-23 19:32:39,353 - INFO -  * Restarting with stat
+2023-10-23 19:32:40,015 - INFO - Initialization completed!
+2023-10-23 19:32:40,082 - INFO - Loading completed
+2023-10-23 19:32:40,086 - WARNING -  * Debugger is active!
+2023-10-23 19:32:40,089 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:32:42,812 - INFO - Initialization completed!
+2023-10-23 19:32:42,879 - INFO - Loading completed
+2023-10-23 19:32:53,625 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\app.py', reloading
+2023-10-23 19:32:53,735 - INFO -  * Restarting with stat
+2023-10-23 19:32:54,416 - INFO - Initialization completed!
+2023-10-23 19:32:54,483 - INFO - Loading completed
+2023-10-23 19:32:54,487 - WARNING -  * Debugger is active!
+2023-10-23 19:32:54,491 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:32:55,353 - INFO - Initialization completed!
+2023-10-23 19:32:55,419 - INFO - Loading completed
+2023-10-23 19:32:57,682 - INFO - Initialization completed!
+2023-10-23 19:32:57,753 - INFO - Loading completed
+2023-10-23 19:33:31,702 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\commands.py', reloading
+2023-10-23 19:33:31,813 - INFO -  * Restarting with stat
+2023-10-23 19:33:32,498 - INFO - Initialization completed!
+2023-10-23 19:33:32,565 - INFO - Loading completed
+2023-10-23 19:33:32,569 - WARNING -  * Debugger is active!
+2023-10-23 19:33:32,573 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:33:33,477 - INFO - Initialization completed!
+2023-10-23 19:33:33,545 - INFO - Loading completed
+2023-10-23 19:33:45,012 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\commands.py', reloading
+2023-10-23 19:33:45,130 - INFO -  * Restarting with stat
+2023-10-23 19:33:45,809 - INFO - Initialization completed!
+2023-10-23 19:33:45,877 - INFO - Loading completed
+2023-10-23 19:33:45,880 - WARNING -  * Debugger is active!
+2023-10-23 19:33:45,884 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:33:47,184 - INFO - Initialization completed!
+2023-10-23 19:33:47,250 - INFO - Loading completed
+2023-10-23 19:34:15,890 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\commands.py', reloading
+2023-10-23 19:34:16,071 - INFO -  * Restarting with stat
+2023-10-23 19:34:16,906 - INFO - Initialization completed!
+2023-10-23 19:34:16,973 - INFO - Loading completed
+2023-10-23 19:34:16,976 - WARNING -  * Debugger is active!
+2023-10-23 19:34:16,980 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:34:18,892 - INFO - Initialization completed!
+2023-10-23 19:34:18,960 - INFO - Loading completed
+2023-10-23 19:35:01,410 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\commands.py', reloading
+2023-10-23 19:35:01,523 - INFO -  * Restarting with stat
+2023-10-23 19:35:02,230 - INFO - Initialization completed!
+2023-10-23 19:35:02,299 - INFO - Loading completed
+2023-10-23 19:35:02,302 - WARNING -  * Debugger is active!
+2023-10-23 19:35:02,306 - INFO -  * Debugger PIN: 395-048-448
+2023-10-23 19:35:03,581 - INFO - Initialization completed!
+2023-10-23 19:35:03,647 - INFO - Loading completed
+2023-10-23 19:36:00,736 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "GET /post/ HTTP/1.1" 200 -
+2023-10-23 19:36:00,893 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,899 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,907 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,907 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,907 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,915 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,917 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,917 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,927 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,930 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,935 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,942 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,945 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,948 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,949 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,957 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,959 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,964 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,964 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:00,965 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:00] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:01,000 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:01] "[36mGET /static/fonts/icomoon/fonts/icomoon.ttf?10si43 HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,440 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "GET /post/post_detail/1 HTTP/1.1" 200 -
+2023-10-23 19:36:02,474 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,483 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,483 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,483 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,489 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,496 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,499 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,506 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,506 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,508 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,512 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/css/post_detail.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,515 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,516 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,527 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,529 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,534 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,541 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,545 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,548 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,550 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:02,550 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:02] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,020 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "GET /post/post_detail/14 HTTP/1.1" 200 -
+2023-10-23 19:36:05,087 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,087 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,091 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,093 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,096 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,103 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,106 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,113 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,114 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,114 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/css/post_detail.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,122 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,127 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,131 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,140 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,140 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,142 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,148 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,149 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,154 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,155 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:05,156 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:05] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,467 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "GET /post/post_detail/13 HTTP/1.1" 200 -
+2023-10-23 19:36:08,503 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,507 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,510 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,511 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,521 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,522 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,524 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,533 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,533 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,541 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/css/post_detail.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,542 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,545 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,548 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,559 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,560 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,565 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,569 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,570 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,574 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,575 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:08,577 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:08] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,563 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "GET /post/post_detail/12 HTTP/1.1" 200 -
+2023-10-23 19:36:11,599 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,600 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,603 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,611 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,614 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,622 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,622 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,622 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,624 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,635 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/css/post_detail.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,636 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,642 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,645 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,651 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,651 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,658 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,663 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,664 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,667 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,669 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:11,670 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:11] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,032 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "GET /post/ HTTP/1.1" 200 -
+2023-10-23 19:36:21,062 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/css/bootstrap.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,069 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/css/owl.theme.default.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,070 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/css/owl.carousel.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,074 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/css/jquery.fancybox.min.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,079 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/fonts/icomoon/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,083 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/css/aos.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,088 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,090 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/fonts/flaticon/font/flaticon.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,095 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,095 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/jquery-3.4.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,104 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/jquery-migrate-3.0.1.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,107 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/popper.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,112 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/owl.carousel.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,117 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/jquery.easing.1.3.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,118 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/bootstrap.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,125 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/jquery.animateNumber.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,129 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/jquery.waypoints.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,130 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/jquery.fancybox.min.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,132 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/aos.js HTTP/1.1[0m" 304 -
+2023-10-23 19:36:21,133 - INFO - 127.0.0.1 - - [23/Oct/2023 19:36:21] "[36mGET /static/js/custom.js HTTP/1.1[0m" 304 -
