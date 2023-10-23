@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime, timedelta
 
+import psutil
 from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, flash
 
 from exts import db, csrf
@@ -38,10 +39,15 @@ def cms_index():
     posts_7 = time_count(PostModel)
     users = UserModel.query.all()
     users_7 = time_count(UserModel)
+    reports = ReportModel.query.all()
+    reports_7 = time_count(ReportModel)
+    workOrder_7 = time_count(WorkModel)
 
     user_list = recent_count(UserModel)
     post_list = recent_count(PostModel)
     report_list = recent_count(ReportModel)
+
+    advert_list = recent_count(AdvertModel)
 
     storage = current_app.config['STORAGE']
 
@@ -50,10 +56,19 @@ def cms_index():
         'posts_7': posts_7,
         'users': users,
         'users_7': users_7,
+        'reports': reports,
+        'reports_7': reports_7,
         'storage': storage,
         'user_list': user_list,
         'post_list': post_list,
-        'report_list': report_list
+        'report_list': report_list,
+
+        'workOrder_7': workOrder_7,
+
+        'adverts': advert_list,
+
+        'cpu_percent': psutil.cpu_percent(interval=0.1),
+        'mem_usage': psutil.virtual_memory().percent,
     }
     return render_template('cms/tabler/demo/home/home.html', var=var, user=g.user)
 

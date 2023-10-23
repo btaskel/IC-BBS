@@ -289,8 +289,8 @@
 						  </a>
 					 </li>
 					 <li class="nav-item dropdown">
-						  <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-							  data-bs-auto-close="false" role="button" aria-expanded="false">
+						  <a class="nav-link dropdown-toggle show" href="#navbar-base" data-bs-toggle="dropdown"
+							  data-bs-auto-close="false" role="button" aria-expanded="true">
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
 								 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -302,7 +302,7 @@
                     内容管理
                   </span>
 						  </a>
-						  <div class="dropdown-menu">
+						  <div class="dropdown-menu show" data-bs-popper="static">
 								<div class="dropdown-menu-columns">
 									 <div class="dropdown-menu-column">
 										  <a class="dropdown-item" href="./alerts.html">
@@ -339,7 +339,9 @@
 												</a>
 										  {% endif %}
 
-
+									 </div>
+								</div>
+						  </div>
 					 <li class="nav-item">
 						  <a class="nav-link" href="{{ url_for("cms.work_index") }}">
                   <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
@@ -353,6 +355,34 @@
                     工单处理
                   </span>
 						  </a>
+					 </li>
+					 <li class="nav-item dropdown">
+						  <a class="nav-link dropdown-toggle show" href="#navbar-help" data-bs-toggle="dropdown"
+							  data-bs-auto-close="false" role="button" aria-expanded="false">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+								 stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+								 stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path
+									 d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path
+									 d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M15 15l3.35 3.35"/><path
+									 d="M9 15l-3.35 3.35"/><path d="M5.65 5.65l3.35 3.35"/><path
+									 d="M18.35 5.65l-3.35 3.35"/></svg>
+                  </span>
+								<span class="nav-link-title">
+                    查询用户
+                  </span>
+						  </a>
+						  <div class="dropdown-menu show" data-bs-popper="static">
+								<a class="dropdown-item" href="https://tabler.io/docs" target="_blank" rel="noopener">
+									 查询信息
+								</a>
+								<a class="dropdown-item" href="./changelog.html">
+									 Changelog
+								</a>
+								<a class="dropdown-item" href="https://github.com/tabler/tabler" target="_blank" rel="noopener">
+									 Source code
+								</a>
+						  </div>
 					 </li>
 					 {#					 <li class="nav-item">#}
 					 {#						  <a class="nav-link" href="./icons.html">#}

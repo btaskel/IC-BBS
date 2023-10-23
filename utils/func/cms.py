@@ -21,6 +21,12 @@ def recent_count(Model, days=30):
         user_number = len(Model.query.filter(and_(time_ago < Model.create_time, Model.create_time < time)).all())
         list_.append(user_number)
     list_.reverse()
+
+    if len(list_) < days:
+        fill = days - len(list_)
+        for i in range(fill):
+            list_.append(0)
+    print(list_)
     return list_
 
 

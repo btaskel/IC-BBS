@@ -13,6 +13,7 @@ from blueprints.media import bp as media_bp
 from blueprints.post import bp as post_bp
 from blueprints.test import bp as test_bp
 from blueprints.user import bp as user_bp
+from blueprints.assets import bp as assets_bp
 from exts import db, Migrate, cache, scheduler, csrf
 from exts import mail
 from shell import initLogging
@@ -46,6 +47,7 @@ app.register_blueprint(event_bp)
 app.register_blueprint(test_bp)
 app.register_blueprint(media_bp)
 app.register_blueprint(ad_bp)
+app.register_blueprint(assets_bp)
 
 # 注册命令
 app.cli.command('create_permission')(commands.create_permission)

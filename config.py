@@ -1,6 +1,3 @@
-import os.path
-
-
 class BaseConfig:
     """基本配置"""
 

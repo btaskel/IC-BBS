@@ -29,7 +29,7 @@ def post_list():
         else:
             posts = PostModel.query.all()
     boards = BoardModel.query.all()
-    return render_template('front/post.html', posts=posts, boards=boards)
+    return render_template('front/post.html', posts=posts, boards=boards, user=g.user)
 
 
 @bp.route('/post_detail/<int:post_id>', methods=['GET', 'POST'])
@@ -43,7 +43,7 @@ def post_detail(post_id):
         if g.user:
             post.views += 1
             db.session.commit()
-        return render_template('front/post_detail.html', post=post, boards=boards)
+        return render_template('front/post_detail.html', post=post, boards=boards, user=g.user)
     else:
         form = CommentForm(request.form)
         if form.validate():
@@ -68,7 +68,7 @@ def add_post():
 
     boards = BoardModel.query.all()
     if request.method == 'GET':
-        return render_template('front/add_post.html', boards=boards)
+        return render_template('front/add_post.html', boards=boards, user=g.user)
 
     elif request.method == 'POST':
         content = re.sub('<img[^>]*>', '', request.form.get('content'))
