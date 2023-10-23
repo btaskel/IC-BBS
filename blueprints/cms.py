@@ -470,8 +470,8 @@ def advert_manage():
         if form.validate():
             title = form.title.data
             content = form.content.data
-            url = form.content.data
-            advert = AdvertModel(title=title, content=content, url=url)
+            post = form.post_url.data
+            advert = AdvertModel(title=title, content=content, post=post)
             db.session.add(advert)
             db.session.commit()
         else:
