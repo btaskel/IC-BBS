@@ -415,3 +415,83 @@
 2023-10-31 17:11:30,228 - INFO - Loading completed
 2023-10-31 17:11:30,231 - WARNING -  * Debugger is active!
 2023-10-31 17:11:30,234 - INFO -  * Debugger PIN: 107-677-434
+2023-10-31 17:20:36,205 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:36,266 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,266 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,276 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,285 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,707 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:36,720 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,726 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,746 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,755 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,851 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:36,864 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,868 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,892 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:36,902 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:36] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,044 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,057 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,058 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,089 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,097 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,138 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,151 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,154 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,178 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,186 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,252 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,264 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,272 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,288 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,296 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,363 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,376 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,379 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,403 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,412 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,476 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,489 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,492 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,517 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,526 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,587 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,600 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,609 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,626 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,633 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,796 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,807 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,810 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,836 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,850 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,915 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:37,927 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,928 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,952 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:37,960 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:37] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:38,029 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:38] "[35m[1mGET /post/ HTTP/1.1[0m" 500 -
+2023-10-31 17:20:38,042 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:38] "[36mGET /post/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-10-31 17:20:38,046 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:38] "[36mGET /post/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-10-31 17:20:38,070 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:38] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:20:38,077 - INFO - 127.0.0.1 - - [31/Oct/2023 17:20:38] "[36mGET /post/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-10-31 17:23:54,394 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\advert.py', reloading
+2023-10-31 17:23:54,511 - INFO -  * Restarting with stat
+2023-10-31 17:24:12,980 - INFO -  * Restarting with stat
+2023-10-31 17:24:13,779 - INFO - Initialization completed!
+2023-10-31 17:24:13,849 - INFO - Loading completed
+2023-10-31 17:24:13,853 - WARNING -  * Debugger is active!
+2023-10-31 17:24:13,856 - INFO -  * Debugger PIN: 107-677-434
+2023-10-31 17:24:22,297 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\advert.py', reloading
+2023-10-31 17:24:22,425 - INFO -  * Restarting with stat
+2023-10-31 17:24:23,510 - INFO - Initialization completed!
+2023-10-31 17:24:23,595 - INFO - Loading completed
+2023-10-31 17:24:23,599 - WARNING -  * Debugger is active!
+2023-10-31 17:24:23,602 - INFO -  * Debugger PIN: 107-677-434
+2023-10-31 17:24:25,775 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\cms.py', reloading
+2023-10-31 17:24:25,885 - INFO -  * Restarting with stat
+2023-10-31 17:25:34,809 - INFO -  * Restarting with stat
+2023-10-31 17:25:35,519 - INFO - Initialization completed!
+2023-10-31 17:25:35,589 - INFO - Loading completed
+2023-10-31 17:25:35,593 - WARNING -  * Debugger is active!
+2023-10-31 17:25:35,596 - INFO -  * Debugger PIN: 107-677-434

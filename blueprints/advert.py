@@ -9,6 +9,7 @@ bp = Blueprint('advert', __name__, url_prefix='/advert')
 
 @bp.route('/', methods=['GET'])
 def ad_index():
-    g.user and logging.debug(f'User {g.user.username} visited the Advert ad_index')
+    if g.user:
+        logging.debug(f'User {g.user.username} visited the Advert ad_index')
     ads = AdvertModel.query.all()
     return render_template('front/advertisement.html', user=g.user, ads=ads)
