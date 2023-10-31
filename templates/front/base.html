@@ -69,10 +69,10 @@
                 {#                <li class="cta-button-outline"><a href="{{ url_for('user.login') }}">登录</a></li>#}
                 {#                <li class="cta-primary"><a href="{{ url_for('user.register') }}">注册</a></li>#}
                 {% if g.user %}
+                    <li class="cta-button-outline"><a href="{{ url_for('user.logout') }}">退出登录</a></li>
                     <li class="cta-button-outline"><a href="{{ url_for('user.profile', user_id=g.user.id) }}">个人中心</a>
                     </li>
                     <li class="cta-primary"><a href="{{ url_for('post.add_post') }}">发布帖子</a></li>
-                    <a href="{{ url_for('user.logout') }}" style="font-size: 10px">退出登录</a>
                 {% else %}
                     <li class="cta-button-outline"><a href="{{ url_for('user.login') }}">登录</a></li>
                     <li class="cta-primary"><a href="{{ url_for('user.register') }}">注册</a></li>

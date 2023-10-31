@@ -19,7 +19,7 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     """用户的首页注册视图函数"""
-    logging.debug(f'User {g.user.username} visited the User register')
+    g.user and logging.debug(f'User {g.user.username} visited the User register')
     if request.method == 'GET':
         return render_template('front/register.html')
 
@@ -48,7 +48,7 @@ def register():
 @bp.route('/send_email')
 def send_email():
     """发送电子邮件用于验证用户注册和登录"""
-    logging.debug(f'User {g.user.username} visited the User send_email')
+    g.user and logging.debug(f'User {g.user.username} visited the User send_email')
 
     try:
         email = request.args.get('email')
@@ -68,7 +68,7 @@ def send_email():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     """用户的首页登录视图函数"""
-    logging.debug(f'User {g.user.username} visited the User login')
+    g.user and logging.debug(f'User {g.user.username} visited the User login')
 
     if request.method == 'GET':
         return render_template('front/signin.html')
@@ -109,7 +109,7 @@ def login():
 
 @bp.route('/profile/<string:user_id>', methods=['GET', 'POST'])
 def profile(user_id):
-    logging.debug(f'User {g.user.username} visited the User profile')
+    g.user and logging.debug(f'User {g.user.username} visited the User profile')
 
     if request.method == 'GET':
         user = UserModel.query.get(user_id)
@@ -132,7 +132,7 @@ def profile(user_id):
 @bp.route('/logout')
 def logout():
     """退出账户"""
-    logging.debug(f'User {g.user.username} visited the User logout')
+    g.user and logging.debug(f'User {g.user.username} visited the User logout')
 
     if g.user:
         session.clear()
@@ -142,7 +142,7 @@ def logout():
 @bp.post('/follow/<string:user_id>')
 def follow(user_id):
     """关注user_id"""
-    logging.debug(f'User {g.user.username} visited the User follow')
+    g.user and logging.debug(f'User {g.user.username} visited the User follow')
 
     user = g.user
     user_to_unfollow = UserModel.query.get(user_id)
@@ -157,7 +157,7 @@ def follow(user_id):
 @bp.post('/unfollow/<string:user_id>')
 def unfollow(user_id):
     """关注user_id"""
-    logging.debug(f'User {g.user.username} visited the User unfollow')
+    g.user and logging.debug(f'User {g.user.username} visited the User unfollow')
 
     user = g.user
     user_to_unfollow = UserModel.query.get(user_id)
@@ -171,7 +171,7 @@ def unfollow(user_id):
 
 @bp.get('/show/<string:filename>')
 def show_image(filename):
-    logging.debug(f'User {g.user.username} visited the User show_image')
+    g.user and logging.debug(f'User {g.user.username} visited the User show_image')
 
     file_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\user\\portraits')
     if filename is None or filename == 'default':
