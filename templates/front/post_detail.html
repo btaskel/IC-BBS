@@ -14,77 +14,84 @@
         {#板块选择#}
         <div class="untree_co-hero py-5 mb-0" id="home-section">
             <div class="container">
-
             </div>
         </div>
-
-        {#文章详情#}
-        <div class="lg-container">
-            <div class="post-container author-info-font" style="text-align: center">
-                <h2>{{ post.title }}</h2>
-                <span>发表时间：{{ post.create_time }}</span>
-                <span>作者：<a
-                        href="{{ url_for('user.profile',user_id=post.author.id) }}">{{ post.author.username }}</a></span>
-                <span>所属板块：{{ post.board.name }}</span>
-                <span>阅读数：{{ post.views }}</span>
-                <span>评论数：{{ post.comments | length }}</span>
-            </div>
-            <br>
-            <article class="post-content" id="post-content" style="margin: 0 50px 50px 50px;">
-                {{ post.content|safe }}
-            </article>
-            <div>
-                {% for image in post.images %}
-                    <img src="{{ url_for('post.show_image', filename=image.name) }}" alt=""
-                         style="max-width: 1000px; max-height: 1000px;width: auto;height: auto;margin: 0 auto;display: block;">
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="add-comment-group" style="margin: 10px 70px">
-            <form action="{{ url_for('post.post_detail',post_id=post.id) }}" method="post">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                <textarea class="form-control" name="content" id="editor" cols="30" rows="5"
-                          style="width: 75%; margin: 0 auto;"></textarea>
-                <input type="hidden">
-                {% with message = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="text-danger mt-2">{{ message }}</div>
+        <div style="margin-right: 15%; margin-left: 15%">
+            {#文章详情#}
+            <div class="lg-container">
+                <div class="post-container author-info-font" style="text-align: center">
+                    <h2>{{ post.title }}</h2>
+                    <span>发表时间：{{ post.create_time }}</span>
+                    <span>作者：<a
+                            href="{{ url_for('user.profile',user_id=post.author.id) }}">{{ post.author.username }}</a></span>
+                    <span>所属板块：{{ post.board.name }}</span>
+                    <span>阅读数：{{ post.views }}</span>
+                    <span>评论数：{{ post.comments | length }}</span>
+                    <br><br><br>
+                    <article class="post-content" id="post-content" style="margin: 0 50px 50px 50px;">
+                        {{ post.content|safe }}
+                    </article>
+                    <div>
+                        {% for image in post.images %}
+                            <img src="{{ url_for('post.show_image', filename=image.name) }}" alt=""
+                                 style="max-width: 1000px; max-height: 1000px;width: auto;height: auto;margin: 0 auto;display: block;">
                         {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                <div class="comment-btn-group" style="margin-right: 50%">
-                    <button class="btn btn-primary" id="comment-btn">发表评论</button>
+                    </div>
+
+
+                    <div class="add-comment-group">
+                        <form action="{{ url_for('post.post_detail',post_id=post.id) }}" method="post">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                            <textarea class="form-control" name="content" id="editor" cols="30" rows="5"
+                                      style="width: 75%; margin: 0 auto;"></textarea>
+                            <input type="hidden">
+                            {% with message = get_flashed_messages() %}
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="text-danger mt-2">{{ message }}</div>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                            <button class="btn btn-primary" id="comment-btn">发表评论</button>
+                            <span class="comment-btn-group">
+
+                            </span>
+                        </form>
+                    </div>
+
+                    <div class="post-group">
+                        <ul class="post-list-group">
+                            {% with comments = post.comments %}
+                                {% if comments %}
+                                    {% for comment in comments %}
+                                        <li>
+                                            <div class="comment-content">
+                                                <p>
+                                        <span><img
+                                                src="{{ url_for('user.show_image', filename=comment.author.portrait) }}"
+                                                alt="" style="height: 50px;border-radius: 50%;"></span>
+                                                    <a href="{{ url_for('user.profile', user_id=comment.author.id) }}"
+                                                       style="outline: none;">{{ comment.author.username }}</a>
+                                                    <span>{{ comment.create_time }}</span>
+                                                </p>
+                                                <p>
+                                                    {{ comment.content }}
+                                                </p>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                    <p style="color: rgba(105,105,105,0.85); text-align: center;">还没有任何评论唷~</p>
+                                {% endif %}
+                            {% endwith %}
+
+                        </ul>
+                        {#            {{ pagination.links }}#}
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
-
-        <div class="post-group">
-            <ul class="post-list-group">
-                {% with comments = post.comments %}
-                    {% if comments %}
-                        {% for comment in comments %}
-                            <li>
-                                <div class="comment-content">
-                                    <p>
-                                        <span>{{ comment.author.username }}</span>
-                                        <span>{{ comment.create_time }}</span>
-                                    </p>
-                                    <p>
-                                        {{ comment.content }}
-                                    </p>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    {% else %}
-                        <p style="color: rgba(105,105,105,0.85); text-align: center;">还没有任何评论唷~</p>
-                    {% endif %}
-                {% endwith %}
-
-            </ul>
-            {#            {{ pagination.links }}#}
-        </div>
+    </div>
 {% endblock %}
 
 {% block js %}

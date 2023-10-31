@@ -32,7 +32,7 @@ def cms_index():
     内容管理系统主页
     :return:
     """
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS homepage')
     now = datetime.now()
     seven_days_ago = now - timedelta(days=7)
@@ -116,7 +116,7 @@ def work_order():
     :return:
     """
     if request.method == 'GET':
-        if g.user:
+        if hasattr(g, 'user'):
             logging.debug(f'User {g.user.username} visited the CMS work_order')
         return render_template('cms/tabler/demo/work/pubic_work_order.html', WorkTypeEnum=WorkTypeEnum, user=g.user)
 
@@ -152,7 +152,7 @@ def work_index():
     r6 = session.query(Users).filter(text("id<:value and name=:name")).params(value=224, name='fred').order_by(Users.id).all()
     r7 = session.query(Users).from_statement(text("SELECT * FROM users where name=:name")).params(name='ed').all()
     """
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS work_index')
 
     # work_list = WorkModel.query.filter_by(active=True
@@ -166,7 +166,7 @@ def complete_work_order():
     """
     完成的工单清单
     """
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS complete_work_order')
     ls = []
     works = WorkModel.query.all()
@@ -182,7 +182,7 @@ def unfinished_work_order():
     """
     未完成的工单清单
     """
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS unfinished_work_order')
 
     works = WorkModel.query.all()
@@ -194,7 +194,7 @@ def unfinished_work_order():
 @permission_required(PermissionEnum.FRONT_USER)
 def timeout_work_order():
     """超时的工单清单"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS timeout_work_order')
 
     works = WorkModel.query.all()
@@ -206,7 +206,7 @@ def timeout_work_order():
 @permission_required(PermissionEnum.FRONT_USER)
 def train():
     """工单回收站"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS timeout_work_order')
 
     works = WorkModel.query.all()
@@ -219,7 +219,7 @@ def train():
 # @permission_required(PermissionEnum.FRONT_USER)
 # def search_user():
 #     if request.method == 'GET':
-#         if g.user:
+#         if hasattr(g, 'user'):
 #         logging.debug(f'User {g.user.username} visited the CMS search_user')
 #
 #         return render_template('cms/tabler/demo/search.html')
@@ -240,7 +240,7 @@ def train():
 @bp.get('/post_index')
 @permission_required(PermissionEnum.FRONT_USER)
 def post_index():
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS post_index')
 
     if request.method == 'GET':
@@ -253,7 +253,7 @@ def post_index():
 @csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_post(post_id):
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS ban_post')
 
     post = PostModel.query.get(post_id)
@@ -267,7 +267,7 @@ def ban_post(post_id):
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_posts():
     """封禁帖子"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS ban_posts')
 
     user = g.user
@@ -280,7 +280,7 @@ def ban_posts():
 @permission_required(PermissionEnum.FRONT_USER)
 def restore_post(post_id):
     """解封帖子"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS restore_post')
 
     post = PostModel.query.get(post_id)
@@ -295,7 +295,7 @@ def restore_post(post_id):
 @permission_required(PermissionEnum.FRONT_USER)
 def reports_index():
     """举报列表：列出所有举报"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS reports_index')
 
     reports = ReportModel.query.all()
@@ -306,7 +306,7 @@ def reports_index():
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_report(report_id):
     """举报列表：将举报对象关闭活动"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS ban_report')
 
     report = ReportModel.query.get(report_id)
@@ -325,7 +325,7 @@ def reported_resolved():
     已解决的举报：获取被封禁的举报列表
     :return:
     """
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS reported_resolved')
 
     if request.method == 'GET':
@@ -347,7 +347,7 @@ def reported_resolved():
 @csrf.exempt
 @permission_required(PermissionEnum.FRONT_USER)
 def report_bat():
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS report_bat')
 
     """举报批量处理：批量处理界面"""
@@ -362,7 +362,7 @@ def report_bat():
 @bp.get('/user_index')
 @permission_required(PermissionEnum.FRONT_USER)
 def users_index():
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS users_index')
 
     """用户列表：获取所有用户"""
@@ -375,7 +375,7 @@ def users_index():
 @permission_required(PermissionEnum.FRONT_USER)
 def ban_user(user_id):
     """用户列表：封禁用户"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS ban_user')
 
     user = UserModel.query.get(user_id)
@@ -388,7 +388,7 @@ def ban_user(user_id):
 @permission_required(PermissionEnum.CMS_USER)
 def restore_user_index():
     """封禁的用户：获取被封禁的用户"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS restore_user_index')
     users = UserModel.query.all()
     return render_template("cms/tabler/demo/user/ban_users.html", users=users, user=g.user)
@@ -398,7 +398,7 @@ def restore_user_index():
 @csrf.exempt
 def restore_user(user_id):
     """封禁的举报：恢复举报"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS restore_user')
     user = UserModel.query.get(user_id)
     if user:
@@ -411,7 +411,7 @@ def restore_user(user_id):
 @permission_required(PermissionEnum.CMS_USER)
 def custom_permissions():
     """自定义用户权限"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS custom_permissions')
     user = g.user
     roles = RoleModel.query.all()
@@ -422,7 +422,7 @@ def custom_permissions():
 @permission_required(PermissionEnum.CMS_USER)
 def custom_user_permission():
     """自定义用户权限"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS custom_user_permission')
     user_id = request.args.get('user_id')
     role_id = request.args.get('role_id')
@@ -447,7 +447,7 @@ def board_manage():
     POST：提交修改板块内容
     :return:
     """
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the CMS board_manage')
     if request.method == 'GET':
         boards = BoardModel.query.all()

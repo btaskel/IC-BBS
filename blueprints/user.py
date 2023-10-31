@@ -19,7 +19,7 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     """用户的首页注册视图函数"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User register')
     if request.method == 'GET':
         return render_template('front/register.html')
@@ -49,7 +49,7 @@ def register():
 @bp.route('/send_email')
 def send_email():
     """发送电子邮件用于验证用户注册和登录"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User send_email')
 
     try:
@@ -70,7 +70,7 @@ def send_email():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     """用户的首页登录视图函数"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User login')
 
     if request.method == 'GET':
@@ -112,7 +112,7 @@ def login():
 
 @bp.route('/profile/<string:user_id>', methods=['GET', 'POST'])
 def profile(user_id):
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User profile')
 
     if request.method == 'GET':
@@ -132,14 +132,25 @@ def profile(user_id):
             print(form.signature.data)
         return redirect(url_for('front.index'))
 
+@bp.route('/profile_edit', methods=['GET', 'POST'])
+def profile_edit():
+    if request.method == 'GET':
+        if hasattr(g, 'user'):
+            logging.debug(f'User {g.user.username} visited the User profile_edit')
+
+        return render_template('front/profile_edit.html', user=g.user)
+    else:
+        pass
+
+
 
 @bp.route('/logout')
 def logout():
     """退出账户"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User logout')
 
-    if g.user:
+    if hasattr(g, 'user'):
         session.clear()
     return redirect('/')
 
@@ -147,7 +158,7 @@ def logout():
 @bp.post('/follow/<string:user_id>')
 def follow(user_id):
     """关注user_id"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User follow')
 
     user = g.user
@@ -163,7 +174,7 @@ def follow(user_id):
 @bp.post('/unfollow/<string:user_id>')
 def unfollow(user_id):
     """关注user_id"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User unfollow')
 
     user = g.user
@@ -178,7 +189,7 @@ def unfollow(user_id):
 
 @bp.get('/show/<string:filename>')
 def show_image(filename):
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User show_image')
 
     file_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\user\\portraits')

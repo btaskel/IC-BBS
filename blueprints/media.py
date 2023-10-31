@@ -9,7 +9,7 @@ bp = Blueprint('media', __name__, url_prefix='/media')
 @bp.route('/<path:filename>')
 def media_file(filename):
     """获取反转的URL"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Media media_file')
 
     return os.path.join(

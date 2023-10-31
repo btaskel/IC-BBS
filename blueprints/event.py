@@ -12,7 +12,7 @@ bp = Blueprint('event', __name__, url_prefix='/event')
 
 @bp.route('/report/<int:post_id>', methods=['GET', 'POST'])
 def post_report(post_id):
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Event post_report')
 
     if request.method == 'GET':

@@ -59,7 +59,7 @@
                 <li><a href="{{ url_for('advert.ad_index') }}" class="nav-link">店铺推荐</a></li>
                 <li><a href="#about-section" class="nav-link">消息中心</a></li>
                 <li><a href="#contact-section" class="nav-link">私信</a></li>
-            {% if user.role.permissions %}
+            {% if g.user and g.user.role.permissions %}
                 <li><a href="{{ url_for('cms.cms_index') }}" class="nav-link">管理中心</a></li>
             {% endif %}
 

@@ -9,7 +9,8 @@ bp = Blueprint('front', __name__, url_prefix='/')
 
 @bp.route('/')
 def index():
-    g.user and logging.debug(f'User {g.user.username} visited the Front index')
+    if hasattr(g, 'user'):
+        logging.debug(f'User {g.user.username} visited the Front index')
 
     if session.get('user_id'):
         return redirect(url_for('post.post_list'))

@@ -5,6 +5,7 @@ from uuid import uuid4
 
 from flask import Blueprint, render_template, request, g, redirect, url_for, flash, jsonify, current_app, make_response
 
+import decorators
 from decorators import login_register
 from exts import db, csrf
 from forms.posts import CommentForm, PostForm
@@ -17,7 +18,7 @@ bp = Blueprint('post', __name__, url_prefix='/post')
 @bp.route('/')
 def post_list():
     """返回首页信息"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Post post_list')
 
     board_id = request.args.get('board')
@@ -30,22 +31,22 @@ def post_list():
         else:
             posts = PostModel.query.all()
     boards = BoardModel.query.all()
-    return render_template('front/post.html', posts=posts, boards=boards, user=g.user)
+    return render_template('front/post.html', posts=posts, boards=boards)
 
 
 @bp.route('/post_detail/<int:post_id>', methods=['GET', 'POST'])
 def post_detail(post_id):
     """帖子详情和评论提交"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Post post_detail')
 
     boards = BoardModel.query.all()
     if request.method == 'GET':
         post = PostModel.query.get(post_id)
-        if g.user:
+        if hasattr(g, 'user'):
             post.views += 1
             db.session.commit()
-        return render_template('front/post_detail.html', post=post, boards=boards, user=g.user)
+        return render_template('front/post_detail.html', post=post, boards=boards)
     else:
         form = CommentForm(request.form)
         if form.validate():
@@ -60,13 +61,14 @@ def post_detail(post_id):
 
 
 @bp.route('/add_post', methods=['GET', 'POST'])
+@login_register
 def add_post():
     """
     创建帖子
     get：返回编辑界面
     post：提交内容
     """
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Post add_post')
 
     boards = BoardModel.query.all()
@@ -120,7 +122,7 @@ def add_post():
 @login_register
 def upload_image():
     # 判断后缀名是否符合要求
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Post upload_image')
     f = next(iter(request.files.values()), None)
     try:
@@ -156,7 +158,7 @@ def upload_image():
 @csrf.exempt
 @login_register
 def show_image(filename):
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Post show_image')
 
     file_dir = os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\post_image\\')
@@ -177,7 +179,7 @@ def show_image(filename):
 @login_register
 def remove_post(post_id):
     """删除帖子"""
-    if g.user:
+    if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the Post remove_post')
 
     user = g.user
