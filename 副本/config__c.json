@@ -1,0 +1,151 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "output": "sing-box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "cloudflare",
+        "address": "tls://1.1.1.1",
+        "detour": "Proxy"
+      },
+      {
+        "tag": "fakedns",
+        "address": "fakeip"
+      },
+      {
+        "tag": "dnspod",
+        "address": "https://1.12.12.12/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "rcode",
+        "address": "rcode://name_error"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "dnspod",
+        "disable_cache": false
+      },
+      {
+        "geosite": "category-ads-all",
+        "server": "rcode"
+      },
+      {
+        "geosite": [
+          "cn",
+          "apple@cn",
+          "category-games@cn"
+        ],
+        "server": "dnspod"
+      }
+    ],
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
+    "strategy": "prefer_ipv4",
+    "final": "cloudflare"
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "::",
+      "listen_port": 10808,
+      "sniff": true,
+      "domain_strategy": "prefer_ipv4"
+    },
+    {
+      "type": "tproxy",
+      "tag": "tproxy-in",
+      "listen": "::",
+      "listen_port": 1536,
+      "sniff": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "trojan",
+      "tag": "trojan-out",
+      "server": "jp.stablize.top",
+      "server_port": 443,
+      "password": "17bb8b44-823c-4612-bc5b-d4c771546061",
+      "flow": "",
+      "network": "tcp",
+      "tls": {
+        "enabled": true,
+        "disable_sni": false,
+        "server_name": "jp.stablize.top"
+      },
+      "multiplex": {
+        "enabled": false,
+        "protocol": "smux",
+        "max_connections": 5,
+        "min_streams": 4,
+        "max_streams": 0
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "selector",
+      "tag": "Proxy",
+      "outbounds": [
+        "direct"
+      ]
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "geosite": [
+          "apple@cn",
+          "category-games@cn",
+          "cn"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "geoip": [
+          "cn",
+          "private"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "find_process": true,
+    "final": "Proxy"
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9998",
+      "store_selected": true,
+      "store_fakeip": true
+    }
+  }
+}

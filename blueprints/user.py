@@ -7,10 +7,11 @@ from flask import Blueprint, request, render_template, url_for, redirect, flash,
 from flask_mail import Message
 from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.security import check_password_hash
+from werkzeug.utils import secure_filename
 
 from exts import db, mail, cache
 from forms.users import RegisterForm, LoginForm, EditProfileForm
-from models.users import UserModel
+from models.users import UserModel, GenderEnum
 from utils import restful
 
 bp = Blueprint('user', __name__, url_prefix='/user')
@@ -110,13 +111,17 @@ def login():
             return redirect(url_for('user.login'))
 
 
-@bp.route('/profile/<string:user_id>', methods=['GET', 'POST'])
+@bp.get('/profile/<string:user_id>')
 def profile(user_id):
     if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User profile')
 
     if request.method == 'GET':
+        if user_id is None:
+            return render_template('front/profile.html', user=g.user, is_mine=True)
         user = UserModel.query.get(user_id)
+        if not user:
+            return
         is_mine = False
         try:
             if user.email == g.user.email:
@@ -124,24 +129,17 @@ def profile(user_id):
         except:
             return restful.params_error()
         return render_template('front/profile.html', user=user, is_mine=is_mine)
-    else:
-        form = EditProfileForm(CombinedMultiDict([request.form, request.files]))
-        if form.validate():
-            print(form.username.data)
-            print(form.portrait.data)
-            print(form.signature.data)
-        return redirect(url_for('front.index'))
+
 
 @bp.route('/profile_edit', methods=['GET', 'POST'])
 def profile_edit():
     if request.method == 'GET':
         if hasattr(g, 'user'):
             logging.debug(f'User {g.user.username} visited the User profile_edit')
-
-        return render_template('front/profile_edit.html', user=g.user)
+        gender = GenderEnum
+        return render_template('front/profile_edit.html', user=g.user, gender=gender)
     else:
         pass
-
 
 
 @bp.route('/logout')
@@ -210,3 +208,26 @@ def show_image(filename):
         response = make_response(image_data)
         response.headers['Content-Type'] = 'image/png'
         return response
+
+
+@bp.post('/upload_portrait')
+def upload_portrait():
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(url_for('profile_edit'))
+    file = request.files['file']
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(url_for('profile_edit'))
+    try:
+        ext = file.filename.split('.')[-1]
+    except:
+        return restful.params_error('文件拓展名不符合规范')
+
+    if ext not in ['jpg', 'jpeg', 'png']:
+        return restful.params_error('文件拓展名不符合规范')
+
+    filename = secure_filename(file.filename)
+    save_path = os.path.join(current_app.config.get('UPLOAD_FOLDER'), 'upload\\user\\portraits\\', filename)
+    file.save(save_path)
+    return redirect(url_for('user.profile'))

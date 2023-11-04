@@ -73,16 +73,16 @@ class UserModel(db.Model):
     gender = db.Column(db.Enum(GenderEnum), default=GenderEnum.none)
     gender_active = db.Column(db.Boolean, nullable=False, default=True)
 
-    phone = db.Column(db.Integer, default='--未填写--')
+    phone = db.Column(db.Integer, default='--未知或已隐藏--')
     phone_active = db.Column(db.Boolean, nullable=False, default=True)
 
     location = db.Column(db.String(200), default='火星~')
     location_active = db.Column(db.Boolean, default=True)
 
-    birthday = db.Column(db.String(7), default='--未填写--')
+    birthday = db.Column(db.String(7), default='--未知或已隐藏--')
     birthday_active = db.Column(db.Boolean, nullable=False, default=True)
 
-    home = db.Column(db.String(255), default='--未填写--')
+    home = db.Column(db.String(255), default='--未知或已隐藏--')
     home_active = db.Column(db.Boolean, nullable=False, default=True)
 
     is_active = db.Column(db.Boolean, nullable=False, default=True)
