@@ -121,7 +121,7 @@ def profile(user_id):
             return render_template('front/profile.html', user=g.user, is_mine=True)
         user = UserModel.query.get(user_id)
         if not user:
-            return
+            return redirect(url_for('status.error_404'))
         is_mine = False
         try:
             if user.email == g.user.email:
@@ -196,7 +196,7 @@ def show_image(filename):
             image_data = open(os.path.join(current_app.config['UPLOAD_FOLDER'], 'upload\\user\\default\\portrait.jpg'),
                               "rb").read()
         except:
-            return redirect(url_for('post.post_list'))
+            return redirect(url_for('status.error_500'))
         response = make_response(image_data)
         response.headers['Content-Type'] = 'image/png'
         return response
@@ -204,7 +204,8 @@ def show_image(filename):
         try:
             image_data = open(os.path.join(file_dir, filename), "rb").read()
         except:
-            return redirect(url_for('post.post_list'))
+            return redirect(url_for('status.error_500'))
+
         response = make_response(image_data)
         response.headers['Content-Type'] = 'image/png'
         return response
@@ -230,4 +231,8 @@ def upload_portrait():
     filename = secure_filename(file.filename)
     save_path = os.path.join(current_app.config.get('UPLOAD_FOLDER'), 'upload\\user\\portraits\\', filename)
     file.save(save_path)
-    return redirect(url_for('user.profile'))
+    user = UserModel.query.get(g.user.id)
+    user.portrait = filename
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('user.profile', user_id=g.user.id))

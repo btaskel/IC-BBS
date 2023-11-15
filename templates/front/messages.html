@@ -1,0 +1,63 @@
+{% extends 'front/base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/post_detail.css') }}">
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="post-group">
+        {#板块选择#}
+        <div class="untree_co-hero py-5 mb-0" id="home-section">
+            <div class="container">
+            </div>
+        </div>
+        <div style="margin-right: 15%; margin-left: 15%">
+            {#文章详情#}
+            <div class="lg-container">
+                {% for post in user.posts %}
+                    <div class="post-group">
+                        <ul class="post-list-group">
+                            {% with comments = post.comments %}
+                                {% if comments %}
+                                    {% for comment in comments %}
+                                        <li>
+
+                                            <div class="comment-content">
+                                                <p>
+                                        <span><img
+                                                src="{{ url_for('user.show_image', filename=comment.author.portrait) }}"
+                                                alt="" style="height: 50px;border-radius: 50%;"></span>
+                                                    <a href="{{ url_for('user.profile', user_id=comment.author.id) }}"
+                                                       style="outline: none;">{{ comment.author.username }}</a>
+                                                    <span>{{ comment.create_time }}</span>
+                                                </p>
+                                                <p>
+                                                    {{ comment.content }}
+                                                </p>
+                                                <a href="{{ url_for('post.post_detail', post_id=post.id) }}">查看帖子内容</a>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                    <p style="color: rgba(105,105,105,0.85); text-align: center;">还没有任何评论唷~</p>
+                                {% endif %}
+                            {% endwith %}
+
+                        </ul>
+                        {#            {{ pagination.links }}#}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

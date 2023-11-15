@@ -57,7 +57,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ url_for('advert.ad_index') }}" class="nav-link">店铺推荐</a></li>
-                <li><a href="#about-section" class="nav-link">消息中心</a></li>
+                <li><a href="{{ url_for('message.index') }}" class="nav-link">消息中心</a></li>
                 <li><a href="#contact-section" class="nav-link">私信</a></li>
             {% if g.user and g.user.role.permissions %}
                 <li><a href="{{ url_for('cms.cms_index') }}" class="nav-link">管理中心</a></li>
@@ -101,7 +101,7 @@
                 <div class="col-lg-4">
                     <div class="widget">
                         <h3>关于这个论坛<span class="text-primary">.</span></h3>
-                        <p>非主论坛部分皆使用MIT协议.</p>
+                        <p>主论坛部分皆使用MIT协议.</p>
                     </div> <!-- /.widget -->
                     <div class="widget">
                         <h3>其它</h3>
