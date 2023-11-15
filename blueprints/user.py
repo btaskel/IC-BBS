@@ -5,12 +5,12 @@ from datetime import datetime
 
 from flask import Blueprint, request, render_template, url_for, redirect, flash, current_app, session, g, make_response
 from flask_mail import Message
-from werkzeug.datastructures import CombinedMultiDict
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
 from exts import db, mail, cache
-from forms.users import RegisterForm, LoginForm, EditProfileForm
+from forms.profile import Signature, Privacy
+from forms.users import RegisterForm, LoginForm
 from models.users import UserModel, GenderEnum
 from utils import restful
 
@@ -142,6 +142,66 @@ def profile_edit():
         pass
 
 
+@bp.route('/profile_edit_delete', methods=['GET', 'POST'])
+def profile_edit_delete():
+    if request.method == 'GET':
+        return render_template('front/profile/profile_edit_delete.html', user=g.user)
+    else:
+        pass
+
+
+@bp.route('/profile_edit_binding', methods=['GET', 'POST'])
+def profile_edit_binding():
+    if request.method == 'GET':
+        return render_template('front/profile/profile_edit_binding.html', user=g.user)
+    else:
+        pass
+
+
+@bp.route('/profile_edit_privacy', methods=['GET', 'POST'])
+def profile_edit_privacy():
+    if request.method == 'GET':
+        return render_template('front/profile/profile_edit_privacy.html', user=g.user)
+    else:
+        form = Privacy(request.form)
+        if form.validate():
+            user = g.user
+
+            location = form.location.data
+            phone = form.phone.data
+            birthday = form.birthday.data
+            home = form.home.data
+
+            user.location = location
+            user.phone = phone
+            user.birthday = birthday
+            user.home = home
+
+            db.session.add(user)
+            db.session.commit()
+        else:
+            for message in form.messages:
+                flash(message)
+        return redirect(url_for('user.profile_edit_signature'))
+
+
+@bp.route('/profile_edit_signature', methods=['GET', 'POST'])
+def profile_edit_signature():
+    if request.method == 'GET':
+        return render_template('front/profile/profile_edit_signature.html', user=g.user)
+    else:
+        form = Signature(request.form)
+        if form.validate():
+            user = g.user
+            signature = form.signature.data
+            user.signature = signature
+            db.session.add(user)
+            db.session.commit()
+        else:
+            flash('个人签名字数应该在5——1000字以内')
+        return redirect(url_for('user.profile_edit_signature'))
+
+
 @bp.route('/logout')
 def logout():
     """退出账户"""
@@ -215,14 +275,15 @@ def show_image(filename):
 def upload_portrait():
     if 'file' not in request.files:
         flash('No file part')
-        return redirect(url_for('profile_edit'))
+        return redirect(url_for('user.profile_edit'))
     file = request.files['file']
     if file.filename == '':
         flash('No selected file')
-        return redirect(url_for('profile_edit'))
+        return redirect(url_for('user.profile_edit'))
     try:
         ext = file.filename.split('.')[-1]
-    except:
+    except Exception as e:
+        print(e)
         return restful.params_error('文件拓展名不符合规范')
 
     if ext not in ['jpg', 'jpeg', 'png']:
