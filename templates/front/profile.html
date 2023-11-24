@@ -36,6 +36,8 @@
     <meta property="og:description"
           content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
     <!-- CSS files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
     <link href="{{ url_for('static', filename='cms/dist/css/tabler.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='cms/dist/css/tabler-flags.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='cms/dist/css/tabler-payments.css') }}" rel="stylesheet"/>
@@ -147,8 +149,8 @@
                                         <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/>
                                     </svg>
                                 </a>
-                                {% if is_mine %}
-                                    <a href="#" class="btn btn-primary" id="refuse">
+                                {% if not is_mine %}
+                                    <a href="#" class="btn btn-primary" id="follow">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                              stroke-linecap="round" stroke-linejoin="round">
@@ -159,17 +161,74 @@
                                         </svg>
                                         关注
                                     </a>
+                                    <script>
+                                        $('#follow').click(function () {
+                                            alert('不能关注自己！')
+                                        })
+                                    </script>
                                 {% else %}
-                                    <a href="#" class="btn btn-primary">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/check -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                             stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                            <path d="M5 12l5 5l10 -10"/>
-                                        </svg>
-                                        关注
-                                    </a>
+                                    {% if follow_active %}
+                                        <a href="#" class="btn btn-primary" id="unfollow">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                 stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path d="M5 12l5 5l10 -10"/>
+                                            </svg>
+                                            关注中
+                                        </a>
+                                        <script>
+                                            $('#unfollow').click(function () {
+                                                $.ajax({
+                                                    url: 'follow/',
+                                                    type: 'POST',
+                                                    data: {
+                                                        'unfollow': {{ user.id }},
+                                                        'follow': null
+                                                    },
+                                                    success: function () {
+                                                        alert('已取消关注')
+                                                    },
+                                                    error: function () {
+                                                        console.log('发送失败！')
+                                                        alert('取消关注失败！')
+                                                    }
+                                                })
+                                            })
+                                        </script>
+                                    {% else %}
+                                        <a href="#" class="btn btn-primary" id="follow">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/check -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                 stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <path d="M5 12l5 5l10 -10"/>
+                                            </svg>
+                                            关注
+                                        </a>
+                                        <script>
+                                            $('#follow').click(function () {
+                                                $.ajax({
+                                                    url: 'follow/',
+                                                    type: 'POST',
+                                                    data: {
+                                                        'follow': 123,
+                                                        'unfollow': null
+                                                    },
+                                                    success: function () {
+                                                        alert('已关注')
+                                                    },
+                                                    error: function () {
+                                                        console.log('发送失败！')
+                                                        alert('关注失败！')
+                                                    }
+                                                })
+                                            })
+                                        </script>
+                                    {% endif %}
+
                                 {% endif %}
                             </div>
                         </div>

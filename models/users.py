@@ -91,11 +91,9 @@ class UserModel(db.Model):
     portrait = db.Column(db.String(255), default='default', nullable=False)
 
     # 关注者
-    followed = db.relationship(
-        'UserModel', secondary=followers,
-        primaryjoin=(followers.c.follower_id == id),
-        secondaryjoin=(followers.c.followed_id == id),
-        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+    followed = db.relationship('UserModel', secondary=followers, primaryjoin=(followers.c.follower_id == id),
+                               secondaryjoin=(followers.c.followed_id == id),
+                               backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
     role = db.relationship('RoleModel', backref='users')
     # role = db.relationship('RoleModel', backref='users')
@@ -112,7 +110,7 @@ class UserModel(db.Model):
         if not self.is_following(user):
             self.followed.append(user)
 
-    def is_following(self, user):
+    def is_following(self, user) -> bool:
         return self.followed.filter(
             followers.c.followed_id == user.id).count() > 0
 

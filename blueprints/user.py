@@ -128,7 +128,10 @@ def profile(user_id):
                 is_mine = True
         except:
             return restful.params_error()
-        return render_template('front/profile.html', user=user, is_mine=is_mine)
+
+        follow_active = g.user.is_following(user)
+
+        return render_template('front/profile.html', user=user, is_mine=is_mine, follow_active=follow_active)
 
 
 @bp.route('/profile_edit', methods=['GET', 'POST'])
@@ -213,20 +216,34 @@ def logout():
     return redirect('/')
 
 
-@bp.post('/follow/<string:user_id>')
+@bp.post('/follow')
 def follow(user_id):
     """关注user_id"""
     if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User follow')
 
-    user = g.user
-    user_to_unfollow = UserModel.query.get(user_id)
-    if user_to_unfollow is not None:
-        user.followed(user_id)
-        db.session.commit()
-        return restful.ok()
-    else:
-        return restful.params_error()
+    follow_ = request.args.get('follow')
+    unfollow_ = request.args.get('unfollow')
+
+    if follow_ and not unfollow_:  # 关注
+        user = g.user
+        user_to_unfollow = UserModel.query.get(user_id)
+        if user_to_unfollow and not user.is_following(user_to_unfollow):
+            user.follow(user_to_unfollow)
+            db.session.commit()
+            return restful.ok()
+        else:
+            return restful.params_error()
+    elif not follow_ and unfollow_: # 取消关注
+        user = g.user
+        user_to_unfollow = UserModel.query.get(user_id)
+        if user_to_unfollow and user.is_following(user_to_unfollow):
+
+            user.unfollow(user_to_unfollow)
+            db.session.commit()
+            return restful.ok()
+        else:
+            return restful.params_error()
 
 
 @bp.post('/unfollow/<string:user_id>')
