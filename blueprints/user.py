@@ -117,20 +117,13 @@ def profile(user_id):
         logging.debug(f'User {g.user.username} visited the User profile')
 
     if request.method == 'GET':
-        if user_id is None:
+        if not user_id:
             return render_template('front/profile.html', user=g.user, is_mine=True)
         user = UserModel.query.get(user_id)
         if not user:
             return redirect(url_for('status.error_404'))
-        is_mine = False
-        try:
-            if user.email == g.user.email:
-                is_mine = True
-        except:
-            return restful.params_error()
-
+        is_mine = True if user.email == g.user.email else False
         follow_active = g.user.is_following(user)
-
         return render_template('front/profile.html', user=user, is_mine=is_mine, follow_active=follow_active)
 
 
@@ -217,33 +210,56 @@ def logout():
 
 
 @bp.post('/follow')
-def follow(user_id):
-    """关注user_id"""
+def follow():
+    """
+    一个用户关注与取消关注一个用户
+    :return: 状态码
+    """
     if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User follow')
+    follow_ = request.form.get('follow')
+    user = g.user
 
-    follow_ = request.args.get('follow')
-    unfollow_ = request.args.get('unfollow')
+    if follow_:
+        follow_user = UserModel.query.get(follow_)
+        if follow_user and follow_user.is_active and user.is_following(follow_user):
+            user.unfollow(follow_user)
+            return restful.ok('已经取消关注该用户')
+        elif follow_user and follow_user.is_active and not user.is_following(follow_user):
+            user.follow(follow_user)
+            return restful.ok('已关注该用户')
+    return restful.params_error('没有查找到该用户，或该用户已被封禁')
 
-    if follow_ and not unfollow_:  # 关注
-        user = g.user
-        user_to_unfollow = UserModel.query.get(user_id)
-        if user_to_unfollow and not user.is_following(user_to_unfollow):
-            user.follow(user_to_unfollow)
-            db.session.commit()
-            return restful.ok()
-        else:
-            return restful.params_error()
-    elif not follow_ and unfollow_: # 取消关注
-        user = g.user
-        user_to_unfollow = UserModel.query.get(user_id)
-        if user_to_unfollow and user.is_following(user_to_unfollow):
-
-            user.unfollow(user_to_unfollow)
-            db.session.commit()
-            return restful.ok()
-        else:
-            return restful.params_error()
+    # user_to_unfollow = UserModel.query.get(follow_)
+    # if user_to_unfollow and user.is_following(user_to_unfollow):
+    #     if user.id != user_to_unfollow.id:
+    #
+    #         user.unfollow(user_to_unfollow)
+    #         db.session.commit()
+    #         return restful.ok()
+    #     else:
+    #         return restful.params_error('用户不存在！')
+    #
+    # if follow_ and not unfollow_:  # 关注
+    #
+    #     user_to_follow = UserModel.query.get(follow_)
+    #     if user_to_follow and not user.is_following(user_to_follow) and user.id != user_to_follow.id:
+    #         user.follow(user_to_follow)
+    #         db.session.commit()
+    #         return restful.ok()
+    #     else:
+    #         return restful.params_error('用户不存在！')
+    # elif not follow_ and unfollow_:  # 取消关注
+    #     user_to_unfollow = UserModel.query.get(unfollow_)
+    #     if user_to_unfollow and user.is_following(user_to_unfollow) and user.id != user_to_unfollow.id:
+    #
+    #         user.unfollow(user_to_unfollow)
+    #         db.session.commit()
+    #         return restful.ok()
+    #     else:
+    #         return restful.params_error('用户不存在！')
+    # else:
+    #     return restful.params_error('无效的操作！')
 
 
 @bp.post('/unfollow/<string:user_id>')

@@ -92,7 +92,7 @@
                                     {% if user.location_active %}
                                         {{ user.location }}
                                     {% else %}
-                                        Harbin University of Civil Engineering & Architecture, China
+                                        未知位置
                                     {% endif %}
 
                                 </div>
@@ -149,8 +149,8 @@
                                         <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z"/>
                                     </svg>
                                 </a>
-                                {% if not is_mine %}
-                                    <a href="#" class="btn btn-primary" id="follow">
+                                {% if is_mine %}
+                                    <a href="#" class="btn btn-primary" id="follow_error">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                              stroke-linecap="round" stroke-linejoin="round">
@@ -162,13 +162,13 @@
                                         关注
                                     </a>
                                     <script>
-                                        $('#follow').click(function () {
+                                        $('#follow_error').click(function () {
                                             alert('不能关注自己！')
                                         })
                                     </script>
                                 {% else %}
                                     {% if follow_active %}
-                                        <a href="#" class="btn btn-primary" id="unfollow">
+                                        <a href="#" class="btn btn-primary" id="follow">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/check -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                                  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -176,27 +176,9 @@
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                                 <path d="M5 12l5 5l10 -10"/>
                                             </svg>
-                                            关注中
+                                            已关注
                                         </a>
-                                        <script>
-                                            $('#unfollow').click(function () {
-                                                $.ajax({
-                                                    url: 'follow/',
-                                                    type: 'POST',
-                                                    data: {
-                                                        'unfollow': {{ user.id }},
-                                                        'follow': null
-                                                    },
-                                                    success: function () {
-                                                        alert('已取消关注')
-                                                    },
-                                                    error: function () {
-                                                        console.log('发送失败！')
-                                                        alert('取消关注失败！')
-                                                    }
-                                                })
-                                            })
-                                        </script>
+
                                     {% else %}
                                         <a href="#" class="btn btn-primary" id="follow">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/check -->
@@ -208,27 +190,7 @@
                                             </svg>
                                             关注
                                         </a>
-                                        <script>
-                                            $('#follow').click(function () {
-                                                $.ajax({
-                                                    url: 'follow/',
-                                                    type: 'POST',
-                                                    data: {
-                                                        'follow': 123,
-                                                        'unfollow': null
-                                                    },
-                                                    success: function () {
-                                                        alert('已关注')
-                                                    },
-                                                    error: function () {
-                                                        console.log('发送失败！')
-                                                        alert('关注失败！')
-                                                    }
-                                                })
-                                            })
-                                        </script>
                                     {% endif %}
-
                                 {% endif %}
                             </div>
                         </div>
@@ -374,8 +336,10 @@
                                                     <path d="M12 7v5l3 3"/>
                                                 </svg>
                                                 帖子数量: <strong>{{ user.posts | length }}</strong>
-                                                <br><br><a href="{{ url_for('user.profile_edit') }}"
-                                                           class="btn btn-primary">编辑</a>
+                                                {% if is_mine %}
+                                                    <br><br><a href="{{ url_for('user.profile_edit') }}"
+                                                               class="btn btn-primary">编辑</a>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -398,4 +362,35 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function () {
+            let btn = document.getElementById("follow")
+            let csrf_token = "{{ csrf_token() }}";
+            $('#follow').click(function () {
+                $.ajax({
+                    url: '/user/follow',
+                    type: 'POST',
+                    beforeSend: function (xhr, settings) {
+                        if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                            xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                        }
+                    },
+                    data: {
+                        'follow': "{{ user.id }}"
+                    },
+                    success: function () {
+                        if (btn.textContent === '已关注') {
+                            btn.textContent = '关注'
+                        } else {
+                            btn.textContent = '已关注'
+                        }
+                    },
+                    error: function () {
+                        console.log('发送失败！')
+                        alert('关注失败！')
+                    }
+                })
+            })
+        })
+    </script>
 {% endblock %}

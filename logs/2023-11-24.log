@@ -3195,3 +3195,27 @@
 2023-11-24 22:45:41,655 - INFO - Loading completed
 2023-11-24 22:45:41,659 - WARNING -  * Debugger is active!
 2023-11-24 22:45:41,661 - INFO -  * Debugger PIN: 354-354-461
+2023-11-24 22:47:06,514 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\user.py', reloading
+2023-11-24 22:47:06,642 - INFO -  * Restarting with stat
+2023-11-24 22:47:07,976 - INFO - Initialization completed!
+2023-11-24 22:47:08,084 - INFO - Loading completed
+2023-11-24 22:47:08,089 - WARNING -  * Debugger is active!
+2023-11-24 22:47:08,091 - INFO -  * Debugger PIN: 354-354-461
+2023-11-24 22:47:11,238 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\user.py', reloading
+2023-11-24 22:47:11,338 - INFO -  * Restarting with stat
+2023-11-24 22:47:12,544 - INFO - Initialization completed!
+2023-11-24 22:47:12,671 - INFO - Loading completed
+2023-11-24 22:47:12,676 - WARNING -  * Debugger is active!
+2023-11-24 22:47:12,679 - INFO -  * Debugger PIN: 354-354-461
+2023-11-24 22:47:22,128 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\user.py', reloading
+2023-11-24 22:47:22,306 - INFO -  * Restarting with stat
+2023-11-24 22:47:23,252 - INFO - Initialization completed!
+2023-11-24 22:47:23,325 - INFO - Loading completed
+2023-11-24 22:47:23,329 - WARNING -  * Debugger is active!
+2023-11-24 22:47:23,331 - INFO -  * Debugger PIN: 354-354-461
+2023-11-24 22:47:25,485 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\user.py', reloading
+2023-11-24 22:47:25,697 - INFO -  * Restarting with stat
+2023-11-24 22:47:26,397 - INFO - Initialization completed!
+2023-11-24 22:47:26,469 - INFO - Loading completed
+2023-11-24 22:47:26,473 - WARNING -  * Debugger is active!
+2023-11-24 22:47:26,475 - INFO -  * Debugger PIN: 354-354-461

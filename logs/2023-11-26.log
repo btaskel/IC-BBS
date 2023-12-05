@@ -60,3 +60,22 @@
 2023-11-26 19:41:41,510 - INFO - 127.0.0.1 - - [26/Nov/2023 19:41:41] "GET /user/show/default HTTP/1.1" 200 -
 2023-11-26 19:41:41,517 - INFO - 127.0.0.1 - - [26/Nov/2023 19:41:41] "[32mGET /user/profile/favicon.ico HTTP/1.1[0m" 302 -
 2023-11-26 19:41:41,557 - INFO - 127.0.0.1 - - [26/Nov/2023 19:41:41] "GET /status/error_404 HTTP/1.1" 200 -
+2023-11-26 19:41:46,070 - INFO - 127.0.0.1 - - [26/Nov/2023 19:41:46] "[33mPOST /user/profile/follow/ HTTP/1.1[0m" 404 -
+2023-11-26 19:42:57,162 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\user.py', reloading
+2023-11-26 19:42:57,327 - INFO -  * Restarting with stat
+2023-11-26 19:42:58,153 - INFO - Initialization completed!
+2023-11-26 19:42:58,248 - INFO - Loading completed
+2023-11-26 19:42:58,253 - WARNING -  * Debugger is active!
+2023-11-26 19:42:58,255 - INFO -  * Debugger PIN: 354-354-461
+2023-11-26 19:43:06,601 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\user.py', reloading
+2023-11-26 19:43:06,776 - INFO -  * Restarting with stat
+2023-11-26 19:43:07,669 - INFO - Initialization completed!
+2023-11-26 19:43:07,741 - INFO - Loading completed
+2023-11-26 19:43:07,745 - WARNING -  * Debugger is active!
+2023-11-26 19:43:07,746 - INFO -  * Debugger PIN: 354-354-461
+2023-11-26 19:45:10,733 - INFO -  * Detected change in 'H:\\Python project\\BBS_\\blueprints\\user.py', reloading
+2023-11-26 19:45:10,868 - INFO -  * Restarting with stat
+2023-11-26 19:45:11,622 - INFO - Initialization completed!
+2023-11-26 19:45:11,750 - INFO - Loading completed
+2023-11-26 19:45:11,756 - WARNING -  * Debugger is active!
+2023-11-26 19:45:11,759 - INFO -  * Debugger PIN: 354-354-461
