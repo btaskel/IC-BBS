@@ -116,7 +116,6 @@ def add_post():
             return redirect(url_for('post.post_list', boards=boards))
 
 
-# 装饰器执行是从里到外的
 @bp.post('/upload/image')
 @csrf.exempt
 @login_register

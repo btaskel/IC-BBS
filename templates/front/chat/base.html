@@ -1,12 +1,4 @@
 <!doctype html>
-<!--
-* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
-* @version 1.0.0-beta19
-* @link https://tabler.io
-* Copyright 2018-2023 The Tabler Authors
-* Copyright 2018-2023 codecalm.net Paweł Kuna
-* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
--->
 <html lang="cn">
 <head>
     <meta charset="utf-8"/>
@@ -77,10 +69,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
-            <a href=".">
-                <img src="{{ url_for('static', filename='cms/static/logo.svg') }}" width="110" height="32"
-                     alt="Tabler" class="navbar-brand-image">
-            </a>
+            <p>私人聊天</p>
         </h1>
         <div class="navbar-nav flex-row d-lg-none">
             <div class="nav-item d-none d-lg-flex me-3">
@@ -299,7 +288,6 @@
 
 {% block body %}
 {% endblock %}
-<!-- Tabler Core -->
 <script src="{{ url_for('static', filename='cms/dist/js/tabler.min.js') }}" defer></script>
 <script src="{{ url_for('static', filename='cms/dist/js/demo.min.js') }}" defer></script>
 </body>

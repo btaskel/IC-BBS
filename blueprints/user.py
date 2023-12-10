@@ -8,6 +8,7 @@ from flask_mail import Message
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
+from decorators import login_register
 from exts import db, mail, cache
 from forms.profile import Signature, Privacy
 from forms.users import RegisterForm, LoginForm
@@ -210,6 +211,7 @@ def logout():
 
 
 @bp.post('/follow')
+@login_register
 def follow():
     """
     一个用户关注与取消关注一个用户
@@ -217,16 +219,23 @@ def follow():
     """
     if hasattr(g, 'user'):
         logging.debug(f'User {g.user.username} visited the User follow')
-    follow_ = request.form.get('follow')
+    follow_id = request.form.get('follow')
     user = g.user
 
-    if follow_:
-        follow_user = UserModel.query.get(follow_)
+    if follow_id:
+        follow_user = UserModel.query.get(follow_id)
         if follow_user and follow_user.is_active and user.is_following(follow_user):
+            print('un')
             user.unfollow(follow_user)
+            db.session.add(user)
+            db.session.commit()
             return restful.ok('已经取消关注该用户')
+
         elif follow_user and follow_user.is_active and not user.is_following(follow_user):
+            print('fo')
             user.follow(follow_user)
+            db.session.add(user)
+            db.session.commit()
             return restful.ok('已关注该用户')
     return restful.params_error('没有查找到该用户，或该用户已被封禁')
 
@@ -263,6 +272,7 @@ def follow():
 
 
 @bp.post('/unfollow/<string:user_id>')
+@login_register
 def unfollow(user_id):
     """关注user_id"""
     if hasattr(g, 'user'):

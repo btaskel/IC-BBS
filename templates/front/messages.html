@@ -25,36 +25,34 @@
                             {% with comments = post.comments %}
                                 {% if comments %}
                                     {% for comment in comments %}
-                                        <li>
-
-                                            <div class="comment-content">
-                                                <p>
+                                        {% if comment.author.id != user.id %}
+                                            <li>
+                                                <div class="comment-content">
+                                                    <p>
                                         <span><img
                                                 src="{{ url_for('user.show_image', filename=comment.author.portrait) }}"
                                                 alt="" style="height: 50px;border-radius: 50%;"></span>
-                                                    <a href="{{ url_for('user.profile', user_id=comment.author.id) }}"
-                                                       style="outline: none;">{{ comment.author.username }}</a>
-                                                    <span>{{ comment.create_time }}</span>
-                                                </p>
-                                                <p>
-                                                    {{ comment.content }}
-                                                </p>
-                                                <a href="{{ url_for('post.post_detail', post_id=post.id) }}">查看帖子内容</a>
-                                            </div>
-                                        </li>
+                                                        <a href="{{ url_for('user.profile', user_id=comment.author.id) }}"
+                                                           style="outline: none;">{{ comment.author.username }}</a>
+                                                        <span>{{ comment.create_time }}</span>
+                                                    </p>
+                                                    <p>
+                                                        {{ comment.content }}
+                                                    </p>
+                                                    <a href="{{ url_for('post.post_detail', post_id=post.id) }}">查看帖子内容</a>
+                                                </div>
+                                            </li>
+                                        {% endif %}
                                     {% endfor %}
                                 {% else %}
-
                                 {% endif %}
                             {% endwith %}
-
                         </ul>
                         {#            {{ pagination.links }}#}
                     </div>
                 {% endfor %}
             </div>
         </div>
-    </div>
     </div>
 {% endblock %}
 
