@@ -7,3 +7,6 @@ class ChatForm(BaseForm):
     content = StringField(validators=[Length(min=1, max=2000, message='输入的字符应该在1-2000个以内')])
     sender_id = StringField(validators=[Length(min=36, max=36, message='发送方id长度错误')])
     receiver_id = StringField(validators=[Length(min=36, max=36, message='接收方id长度错误')])
+
+class Email(BaseForm):
+    message = StringField(validators=[Length(min=5, max=2000, message='发送长度超过2000个字符！')])
