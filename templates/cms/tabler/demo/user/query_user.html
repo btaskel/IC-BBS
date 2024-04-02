@@ -190,39 +190,24 @@
 				<div class="container container-tight py-4">
 					 <form
 								class="card card-md"
-								action="{{ url_for('cms.board_manage') }}"
+								action="{{ url_for('cms.user_info') }}"
 								method="post"
 								autocomplete="off"
-								novalidate
-					 >
+								novalidate>
 						  <div class="card-body">
-								<h2 class="card-title text-center mb-4">板块修改</h2>
-								<div class="mb-3">
-									 <label class="form-label">选择/添加板块</label>
-									 <select class="form-select">
-										  {% for board in boards %}
-												<option name="board_id" value="{{ board.id }}">{{ board.name }}</option>
-										  {% endfor %}
-										  <option value="0">--创建新板块--</option>
-									 </select>
-								</div>
+								<h2 class="card-title text-center mb-4">用户查询</h2>
 								<div class="mb-4">
-									 <label class="form-label">板块名</label>
+									 <label class="form-label">用户id / 用户名</label>
 									 <div class="input-group">
-										  <input type="text" class="form-control" placeholder="更改或增加新板块" name="board_name"/>
+										  <input type="text" class="form-control" placeholder="用户id / 用户名" name="user_info"/>
 									 </div>
 								</div>
 								<div class="text-secondary">
-									 1.当选择一个已有板块更改名称并点击 “修改/添加” 按钮时，将会修改其名称。
-									 <br>
-									 2.当选择 “创建新板块” 并点击 “修改/添加” 按钮时，将会添加新板块。
+									 1.这将会返回用户信息
 								</div>
 								<div class="form-footer">
-									 <button type="submit" name="btn" class="btn btn-primary w-100" style="color: #b90000" value="delete">
-										  删除
-									 </button>
-									 <button type="submit" name="btn" class="btn btn-primary w-100" style="margin: 20px 0px" value="edit">
-										  修改/添加
+									 <button type="submit" name="btn" class="btn btn-primary w-100" value="delete">
+										  查询
 									 </button>
 								</div>
 						  </div>
@@ -235,4 +220,14 @@
 	 <!-- Tabler Core -->
 	 <script src="./dist/js/tabler.min.js" defer></script>
 	 <script src="./dist/js/demo.min.js" defer></script>
+	 <script>
+	 axios.get('/get_file')
+    .then(response => {
+        // 处理文件内容
+        console.log(response.data); // 这里应该是你的字符串内容
+    })
+    .catch(error => {
+        console.error('Error fetching file:', error);
+    });
+	 </script>
 {% endblock %}

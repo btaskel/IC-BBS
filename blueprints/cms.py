@@ -1,8 +1,10 @@
+import io
+import json
 import logging
 from datetime import datetime, timedelta
 
 import psutil
-from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, flash
+from flask import Blueprint, render_template, current_app, request, g, redirect, url_for, flash, send_file
 
 from exts import db, csrf
 from forms.advert import AdvertForm
@@ -512,3 +514,40 @@ def advert_delete():
         if advert:
             db.session.delete(advert)
             db.session.commit()
+
+
+@bp.route('/user_info',methods=['GET','POST'])
+@csrf.exempt
+@permission_required(PermissionEnum.CMS_USER)
+def user_info():
+    if request.method == 'GET':
+        return render_template('cms/tabler/demo/user/query_user.html', user=g.user)
+    else:
+        query_user = request.form.get('user_info')
+        if query_user:
+            user_name_list = UserModel.query.filter_by(username=query_user).all()
+            user_id = UserModel.query.get(query_user)
+            user_list = user_name_list.append(user_id)
+        else:
+            return redirect(url_for('cms.cms_index'))
+        dc = {}
+        if user_list:
+            for user in user_list:
+                dc[user.id] = {
+                    'username': user.username,
+                    'email': user.email,
+                    'createTime': user.create_time,
+                    'isActive': user.is_active,
+                    'isStaff': user.is_staff,
+                    'roleID': user.role_id,
+                    'signature': user.signature,
+                    'gender': user.gender,
+                    'phone': user.phone,
+                    'location': user.location
+                }
+        else:
+            return redirect(url_for('cms.cms_index'))
+        print("user:",dc)
+        with io.BytesIO() as f:
+            f.write(json.dumps(dc))
+        return send_file(f, mimetype='text/plain', as_attachment=True)

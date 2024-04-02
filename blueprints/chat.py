@@ -40,3 +40,9 @@ def send(user_id):
         return restful.ok()
     else:
         return restful.params_error('字段验证失败')
+
+@bp.get('/getSessionHistory')
+@login_register
+def getSessionHistory():
+    user = g.user
+    

@@ -7,6 +7,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/副本" />
+      <excludeFolder url="file://$MODULE_DIR$/__副本" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11 (BBS_)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
